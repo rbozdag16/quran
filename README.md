@@ -1,0 +1,2 @@
+# quran
+Easy Quran
