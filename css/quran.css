@@ -1,0 +1,366 @@
+:root {
+	--arabic_background_color: #fffde1;
+	--arabic_font_family: 'hamdullah';
+	--arabic_font_size: 28px;
+	--arabic_side_padding: 10px;
+	--background: red;
+	--border: red;
+	--color: white;
+	--gray: #6c6c6c;
+	--li-border-color: #dedede;
+	--nav_side_background_color: #f5f1c0;
+	--nav_top_height: 37px;
+	--nav_top_background_color: brown;
+	--page_info_color: brown;
+	--sajdah-background: #f9f3a6;
+	--sura_name_background_color: #a2a278;
+	--verse_number_color: brown;
+	--btn_hover_color: brown;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html {
+	font-family: sans-serif;
+	/*scroll-behavior: smooth;*/
+}
+ul {
+	list-style: none;
+}
+i {
+	font-style: normal;
+}
+button {
+	display: inline-block;
+	font-weight: 400;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: transparent;
+	border: 1px solid transparent;
+	padding: 2px;
+	font-size: .9rem;
+	border-radius: .25rem;
+	cursor: pointer;
+	outline: none;
+}
+.container {
+	position: relative;
+	width: 100%;
+	margin: 0 auto 1rem;
+	padding: 0 5px;
+}
+.arabic {
+	position: relative;
+	padding: 5px 0;
+	top: var(--nav_top_height);
+	text-align: justify;
+	direction: rtl;
+	font-family: var(--arabic_font_family);
+	font-size: var(--arabic_font_size);
+	page-break-inside: avoid;
+	background-color: var(--arabic_background_color);
+}
+/*Sura names*/
+.sn {
+	border-top: var(--nav_top_height) solid var(--arabic_background_color);
+	font-size: 18px;
+	background-color: var(--sura_name_background_color);
+	color: #eee;
+	page-break-inside: avoid;
+	font-family: 'hamdullah', sans-serif;
+	font-weight: 300;
+	text-align: center;
+}
+/*Verse numbers*/
+.vn {
+	font-family: 'rb-quran', sans-serif;
+	font-size: .6em;
+	color: var(--verse_number_color);
+}
+#nav-top {
+	position: fixed;
+	display: flex;
+	justify-content: space-between;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	padding: 10px;
+	height: var(--nav_top_height);
+	background-color: var(--nav_top_background_color);
+	z-index: 1;
+	color: white;
+	border-left: 5px solid white;
+	border-right: 5px solid white;
+}
+#anchor-list {
+}
+.font-selector {
+}
+.sura-selector {
+	display: block;
+}
+.sajdah {
+	background-color: var(--sajdah-background);
+}
+.basmala {
+	font-family: var(--arabic_font_family);
+}
+#nav-left, #nav-right {
+	position: fixed;
+	top: var(--nav_top_height);
+	width: 45%;
+	height: 100vh;
+	margin: 0;
+	padding: 1rem;
+	background-color: var(--nav_side_background_color);
+	transition: .5s;
+	opacity: 1;
+	font-size: .7rem;
+	color: var(--gray);
+	z-index: 100;
+}
+#nav-left {
+	left: -45%;
+}
+#nav-right {
+	right: -45%;
+}
+#nav-left.open {
+	left: 0;
+}
+#nav-right.open {
+	right: 0;
+}
+#open-nav-left,
+#open-nav-right {
+	cursor: pointer;
+	z-index: 100;
+}
+#close-nav-left,
+#close-nav-right {
+	cursor: pointer;
+	color: var(--gray);
+}
+#close-nav-left:hover,
+#close-nav-right:hover {
+	color: var(--btn_hover_color);
+}
+.close-btn-p {
+	font-size: 1.6rem;
+	margin-bottom: 1rem;
+}
+.text-right {
+	text-align: right;
+}
+.text-center {
+	text-align: center;
+}
+.settings {
+	display: grid;
+	grid-template-columns: 40% 60%;
+	grid-gap: 5px;
+	align-items: center;
+}
+.settings dt {
+	text-align: right;
+}
+.settings dd {
+}
+.settings input,
+.settings select {
+	width: 100%;
+	height: 2rem;
+	border-image: none;
+}
+#nav-left-drag,
+#nav-right-drag {
+	position: fixed;
+	top: var(--nav_top_height);
+	width: var(--arabic_side_padding);
+	height: 100%;
+	z-index: 99;
+}
+#nav-left-drag {
+	left: 0;
+}
+#nav-right-drag {
+	right: 0;
+}
+.hidden {
+	visibility: hidden;
+}
+.visible {
+	visibility: visible;
+}
+.btn {
+	display: inline-block;
+	font-weight: 400;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: transparent;
+	border: 1px solid transparent;
+	padding: 2px;
+	font-size: 1rem;
+	border-radius: .25rem;
+	cursor: pointer;
+	text-decoration: none;
+	outline: none;
+}
+.btn:active {
+	background-image: none;
+}
+/*Page bookmark*/
+.btn.page-bookmark {
+	color: white;
+	border-color: white;
+}
+.btn.page-bookmark:hover {
+	color: var(--btn_hover_color);
+	border-color: var(--nav_top_background_color);
+	background-color: white;
+}
+/*Page info paragraph*/
+.pip {
+	margin: 0;
+	padding-top: var(--nav_top_height);
+}
+/*Page info span*/
+.pi {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	font-family: sans-serif;
+	font-size: 1rem;
+	text-decoration: none;
+	color: var(--gray);
+	background-color: #fffde1;
+	direction: ltr;
+	overflow: hidden;
+	transition: width .5s;
+}
+/*Page anchor button*/
+.pa {
+	color: var(--gray);
+	border-color: var(--gray);
+}
+.pa:hover {
+	color: var(--btn_hover_color);
+	border-color: var(--btn_hover_color);
+}
+/*Page info button*/
+.ib {
+	margin-right: 1rem;
+	font-size: 1rem;
+	color: var(--gray);
+	border: 1px solid transparent;
+}
+.ib:hover {
+	color: var(--btn_hover_color);
+	border: 1px solid var(--btn_hover_color);
+}
+.ib.open + .pi{
+	width: auto;
+	height: auto;
+}
+.rb {
+	font-size: 1.2rem;
+}
+.overlay {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, .7);
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity .5s;
+}
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+.popup {
+	position: relative;
+	width: 30%;
+	margin: 60px auto;
+	padding: 10px;
+	background-color: white;
+	border-radius: 5px;
+	transition: 1s;
+}
+.close-overlay {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	text-decoration: none;
+	font-size: 2rem;
+	cursor: pointer;
+	color: var(--gray);
+}
+.close-overlay:hover {
+	color: var(--btn_hover_color);
+}
+.popup-content {
+	max-height: 30%;
+	overflow: auto;
+}
+.popup h3 {
+	margin-bottom: 1em;
+	color: var(--nav_top_background_color);
+}
+.popup p {
+	margin-bottom: 1rem;
+}
+@media (min-width: 850px) {
+	html {
+		font-size: 16px;
+	}
+	.container {
+		width: 850px;
+	}
+	#nav-top {
+		width: 840px;
+		border: none;
+	}
+	.arabic {
+		font-size: var(--arabic_font_size);
+	}
+	.vn {
+		font-size: 1rem;
+	}
+	#nav-left, #nav-right {
+		width: 300px;
+		top: 0;
+	}
+	.btn, .rb {
+		font-size: 1.2rem;
+	}
+	.page-bookmark {
+		font-size: .9rem;
+	}
+}
+@media print {
+	.container {
+		display: block;
+		border: none;
+	}
+	.arabic {
+		margin-bottom: 1rem;
+	}
+	.page {
+		break-before: page;
+	}
+}
