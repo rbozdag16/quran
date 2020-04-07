@@ -1,6 +1,4 @@
 window.onload = ()=>{
-	let html        = document.querySelector('html');
-	let body        = document.querySelector('body');
 	let quranVerses = document.querySelector('#quran-verses');
 
 	let infos       = document.querySelectorAll('.ib');
@@ -38,6 +36,31 @@ window.onload = ()=>{
 	{
 		anchorList.innerHTML = '<i class="rb">b</i> <a class="btn page-bookmark" href="#'+pageAnchorHref+'">p'+pageBookmarkLabel+'</a>';
 	}
+
+	if (localStorage.getItem('settingsColor'))
+	{
+		settingsColor = localStorage.getItem('settingsColor');
+		setColors();
+	}
+
+	function setColors()
+	{
+		document.documentElement.style.setProperty('--nav_top_background_color', settingsColor);
+		document.documentElement.style.setProperty('--verse_number_color', settingsColor);
+		document.documentElement.style.setProperty('--sura_name_background_color', settingsColor);
+		document.documentElement.style.setProperty('--btn_hover_color', settingsColor);
+	}
+
+	// Color list
+	let colorList   = document.querySelector('#color-list');
+
+	colorList.addEventListener('change', (e)=>{
+		document.documentElement.style.setProperty('--nav_top_background_color', colorList.value);
+		document.documentElement.style.setProperty('--verse_number_color', colorList.value);
+		document.documentElement.style.setProperty('--sura_name_background_color', colorList.value);
+		document.documentElement.style.setProperty('--btn_hover_color', colorList.value);
+		localStorage.setItem('settingsColor', colorList.value);
+	});
 
 	// Font Size
 	let fontSize   = document.querySelector('#font-size');
@@ -124,7 +147,7 @@ window.onload = ()=>{
 
 	function juzToTop()
 	{
-		let juz = document.getElementById('p_'+juzList.value*20);
+		let juz = document.getElementById('p_'+(juzList.value*20+1));
 		juz.scrollIntoView();
 	}
 
