@@ -1,21 +1,20 @@
 :root {
-	--arabic_background_color: #fffde1;
-	--arabic_font_family: 'hamdullah';
-	--arabic_font_size: 28px;
-	--arabic_side_padding: 10px;
-	--background: red;
-	--border: red;
-	--color: white;
-	--gray: #6c6c6c;
-	--li-border-color: #dedede;
-	--nav_side_background_color: #f5f1c0;
-	--nav_top_height: 37px;
-	--nav_top_background_color: brown;
-	--page_info_color: brown;
-	--sajdah-background: #f9f3a6;
-	--sura_name_background_color: #a2a278;
-	--verse_number_color: brown;
+	--abc: #fffde1; /* arabic background color */
+	--ac: black; /* arabic color */
+	--aff: 'Hamdullah'; /* arabic font family */
+	--afs: 28px; /* arabic font size */
+	--asp: 10px; /* arabic side padding */
+	--btn_color: #6c6c6c; /* button color */
 	--btn_hover_color: brown;
+	--max-width: 768px; /* maximum width for container */
+	--nsbc: #f5f1c0; /* nav side background color */
+	--ntbc: brown; /* nav top background color */
+	--nth: 42px; /* nav top height */
+	--qpic: brown; /* quran page info color */
+	--sajdah-color: darkviolet;
+	--snbc: #a2a278; /* sura name background color */
+	--verse-color: black;
+	--vnc: brown; /* verse number color */
 }
 * {
 	margin: 0;
@@ -23,6 +22,7 @@
 	box-sizing: border-box;
 }
 html {
+	font-size: 16px;
 	font-family: sans-serif;
 	/*scroll-behavior: smooth;*/
 }
@@ -31,58 +31,45 @@ ul {
 }
 i {
 	font-style: normal;
-}
-button {
-	display: inline-block;
-	font-weight: 400;
-	color: white;
-	text-align: center;
-	vertical-align: middle;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background-color: transparent;
-	border: 1px solid transparent;
-	padding: 2px;
-	font-size: .9rem;
-	border-radius: .25rem;
-	cursor: pointer;
-	outline: none;
+	color: var(--verse-color);
 }
 .container {
 	position: relative;
 	width: 100%;
+	max-width: var(--max-width);
 	margin: 0 auto 1rem;
 	padding: 0 5px;
 }
 .arabic {
 	position: relative;
 	padding: 5px 0;
-	top: var(--nav_top_height);
+	top: var(--nth);
 	text-align: justify;
 	direction: rtl;
-	font-family: var(--arabic_font_family);
-	font-size: var(--arabic_font_size);
+	font-family: var(--aff);
+	font-size: var(--afs);
 	page-break-inside: avoid;
-	background-color: var(--arabic_background_color);
+	background-color: var(--abc);
+	color: var(--ac);
 }
 /*Sura names*/
 .sn {
-	border-top: var(--nav_top_height) solid var(--arabic_background_color);
+	padding: 1rem;
+	background-color: var(--snbc);
+	border-top: var(--nth) solid var(--abc);
+	font-family: sans-serif;
 	font-size: 18px;
-	background-color: var(--sura_name_background_color);
+	font-weight: lighter;
+	text-align: center;
 	color: #eee;
 	page-break-inside: avoid;
-	font-family: 'hamdullah', sans-serif;
-	font-weight: 300;
-	text-align: center;
+	direction: ltr;
 }
 /*Verse numbers*/
 .vn {
 	font-family: 'rb-quran', sans-serif;
-	font-size: .6em;
-	color: var(--verse_number_color);
+	font-size: .5em;
+	color: var(--vnc);
 }
 #nav-top {
 	position: fixed;
@@ -90,14 +77,19 @@ button {
 	justify-content: space-between;
 	left: 0;
 	right: 0;
+	max-height: var(--nth);
+	max-width: var(--max-width);
 	margin: 0 auto;
 	padding: 10px;
-	height: var(--nav_top_height);
-	background-color: var(--nav_top_background_color);
-	z-index: 1;
+	background-color: var(--ntbc);
 	color: white;
-	border-left: 5px solid white;
-	border-right: 5px solid white;
+	border-bottom: 3px solid var(--abc);
+	z-index: 1;
+}
+.nav-top-btn {
+	color: white;
+	cursor: pointer;
+	z-index: 100;
 }
 #anchor-list {
 }
@@ -107,23 +99,25 @@ button {
 	display: block;
 }
 .sajdah {
-	background-color: var(--sajdah-background);
+	color: var(--sajdah-color);
 }
 .basmala {
-	font-family: var(--arabic_font_family);
+	font-family: var(--aff);
+	font-size: var(--afs);
+	color: var(--ac);
 }
 #nav-left, #nav-right {
 	position: fixed;
-	top: var(--nav_top_height);
-	width: 45%;
+	top: var(--nth);
+	width: 40%;
 	height: 100vh;
 	margin: 0;
 	padding: 1rem;
-	background-color: var(--nav_side_background_color);
+	background-color: var(--nsbc);
 	transition: .5s;
 	opacity: 1;
 	font-size: .7rem;
-	color: var(--gray);
+	color: var(--btn_color);
 	z-index: 100;
 }
 #nav-left {
@@ -138,15 +132,10 @@ button {
 #nav-right.open {
 	right: 0;
 }
-#open-nav-left,
-#open-nav-right {
-	cursor: pointer;
-	z-index: 100;
-}
 #close-nav-left,
 #close-nav-right {
 	cursor: pointer;
-	color: var(--gray);
+	color: var(--btn_color);
 }
 #close-nav-left:hover,
 #close-nav-right:hover {
@@ -182,8 +171,8 @@ button {
 #nav-left-drag,
 #nav-right-drag {
 	position: fixed;
-	top: var(--nav_top_height);
-	width: var(--arabic_side_padding);
+	top: var(--nth);
+	width: var(--asp);
 	height: 100%;
 	z-index: 99;
 }
@@ -200,43 +189,55 @@ button {
 	visibility: visible;
 }
 .btn {
-	display: inline-block;
-	font-weight: 400;
-	color: white;
-	text-align: center;
-	vertical-align: middle;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	padding: 2px;
 	background-color: transparent;
 	border: 1px solid transparent;
-	padding: 2px;
-	font-size: 1rem;
 	border-radius: .25rem;
-	cursor: pointer;
+	color: white;
+	font-size: 1rem;
 	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	user-select: none;
 	outline: none;
+	direction: ltr;
 }
 .btn:active {
 	background-image: none;
 }
 /*Page bookmark*/
-.btn.page-bookmark {
+#bookmark {
+	padding: 2px 4px;
 	color: white;
-	border-color: white;
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	border-radius: 4px;
+	cursor: pointer;
 }
-.btn.page-bookmark:hover {
+#bookmark:hover {
 	color: var(--btn_hover_color);
-	border-color: var(--nav_top_background_color);
+	border-color: var(--ntbc);
 	background-color: white;
+}
+#bookmark-icon {
+	cursor: auto;
+}
+/*Juz info paragraph*/
+.jip {
+	margin: 0;
+	padding: 10px;
+	text-align: center;
+	font-family: sans-serif;
+	border-top: var(--nth) solid var(--abc);
+	direction: ltr;
 }
 /*Page info paragraph*/
 .pip {
-	margin: 0;
-	padding-top: var(--nav_top_height);
+	margin-bottom: 1rem;
+	padding-top: var(--nth);
+	font-family: sans-serif;
 }
-/*Page info span*/
+/*Page info*/
 .pi {
 	display: inline-block;
 	width: 0;
@@ -244,16 +245,16 @@ button {
 	font-family: sans-serif;
 	font-size: 1rem;
 	text-decoration: none;
-	color: var(--gray);
+	color: var(--btn_color);
 	background-color: #fffde1;
-	direction: ltr;
 	overflow: hidden;
 	transition: width .5s;
 }
 /*Page anchor button*/
 .pa {
-	color: var(--gray);
-	border-color: var(--gray);
+	display: inline-block;
+	color: var(--btn_color);
+	border-color: var(--btn_color);
 }
 .pa:hover {
 	color: var(--btn_hover_color);
@@ -263,7 +264,7 @@ button {
 .ib {
 	margin-right: 1rem;
 	font-size: 1rem;
-	color: var(--gray);
+	color: var(--btn_color);
 	border: 1px solid transparent;
 }
 .ib:hover {
@@ -274,83 +275,68 @@ button {
 	width: auto;
 	height: auto;
 }
+/*Juz anchor button*/
+.ca {
+	direction: ltr;
+	color: var(--btn_color);
+	border-color: var(--btn_color);
+}
+.ca:hover {
+	color: var(--btn_hover_color);
+	border-color: var(--btn_hover_color);
+}
 .rb {
 	font-size: 1.2rem;
 }
 .overlay {
+	display: none;
 	position: fixed;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	background: rgba(0, 0, 0, .7);
-	visibility: hidden;
 	opacity: 0;
-	transition: opacity .5s;
 }
-.overlay:target {
-	visibility: visible;
+.overlay.open {
+	display: block;
 	opacity: 1;
 }
 .popup {
 	position: relative;
-	width: 30%;
+	width: 80%;
+	max-width: 600px;
 	margin: 60px auto;
 	padding: 10px;
 	background-color: white;
 	border-radius: 5px;
-	transition: 1s;
 }
-.close-overlay {
+#close-popup-btn {
 	position: absolute;
-	top: 10px;
-	right: 10px;
-	text-decoration: none;
-	font-size: 2rem;
+	top: 5px;
+	right: 5px;
 	cursor: pointer;
-	color: var(--gray);
+	color: var(--btn_color);
 }
-.close-overlay:hover {
+#close-popup-btn:hover {
 	color: var(--btn_hover_color);
 }
 .popup-content {
 	max-height: 30%;
 	overflow: auto;
 }
-.popup h3 {
+.popup h3, .popup h4 {
 	margin-bottom: 1em;
-	color: var(--nav_top_background_color);
+	color: var(--ntbc);
 }
 .popup p {
 	margin-bottom: 1rem;
 }
-@media (min-width: 850px) {
-	html {
-		font-size: 16px;
-	}
-	.container {
-		width: 850px;
-	}
-	#nav-top {
-		width: 840px;
-		border: none;
-	}
-	.arabic {
-		font-size: var(--arabic_font_size);
-	}
-	.vn {
-		font-size: 1rem;
-	}
-	#nav-left, #nav-right {
-		width: 300px;
-		top: 0;
-	}
-	.btn, .rb {
-		font-size: 1.2rem;
-	}
-	.page-bookmark {
-		font-size: .9rem;
-	}
+.ul {
+	margin: 1rem 0;
+	padding-left: 2rem;
+	list-style-type: disc;
+	color: var(--ntbc);
 }
 @media print {
 	.container {
@@ -360,7 +346,7 @@ button {
 	.arabic {
 		margin-bottom: 1rem;
 	}
-	.page {
+	.pip {
 		break-before: page;
 	}
 }
