@@ -42,8 +42,9 @@ i {
 }
 .arabic {
 	position: relative;
-	padding: 5px 0;
 	top: var(--nth);
+	margin-bottom: 2rem;
+	padding: 5px 0;
 	text-align: justify;
 	direction: rtl;
 	font-family: var(--aff);
