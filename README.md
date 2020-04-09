@@ -21,4 +21,4 @@ After installing without internet connection it can run offline.
 
 For feature requests or any bug reports please send email to info at fklavye dot net
 
-That is an open source project. You can freely modify it on github
+That is an open source project. You can freely modify it on [github](https://github.com/obozdag/quran)
