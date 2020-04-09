@@ -1,45 +1,17 @@
 @font-face {
-	font-family:hamdullah;
+	font-family:"Hamdullah";
 	src:url(fonts/hamdullah.ttf);
 }
 @font-face {
-	font-family:myriad;
-	src:url(fonts/myriad.ttf);
-}
-@font-face {
-	font-family:uthmani;
-	src:url(fonts/uthmani.woff);
-}
-@font-face {
-	font-family:amiri;
-	src:url(fonts/amiri.ttf);
-}
-@font-face {
-	font-family:katibeh;
-	src:url(fonts/katibeh.ttf);
-}
-@font-face {
-	font-family:kufi;
-	src:url(fonts/kufi.ttf);
-}
-@font-face {
-	font-family:lateef;
+	font-family:"Lateef";
 	src:url(fonts/lateef.ttf);
 }
 @font-face {
-	font-family:markazi;
-	src:url(fonts/markazi.ttf);
-}
-@font-face {
-	font-family:mirza;
-	src:url(fonts/mirza.ttf);
-}
-@font-face {
-	font-family:saleem;
+	font-family:"Saleem";
 	src:url(fonts/saleem.ttf);
 }
 @font-face {
-	font-family:seherezade;
+	font-family:"Seherezade";
 	src:url(fonts/seherezade.ttf);
 }
 @font-face {
