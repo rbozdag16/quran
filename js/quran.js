@@ -1,107 +1,195 @@
 window.onload = ()=>{
-	let quranVerses = document.querySelector('#quran-verses');
+	// Define elements
+	let bookmarkContainer = document.getElementById('bookmark-container');
+	let closeNavLeftBtn   = document.getElementById('close-nav-left');
+	let closeNavRightBtn  = document.getElementById('close-nav-right');
+	let closePopupBtn     = document.getElementById('close-popup-btn');
+	let colorList         = document.getElementById('color-list');
+	let fontFamilyList    = document.getElementById('font-family-list');
+	let fontSizeList      = document.getElementById('font-size-list');
+	let juzAnchors        = document.querySelectorAll('.ca');
+	let juzList           = document.getElementById('juz-list');
+	let navLeft           = document.getElementById('nav-left');
+	let navLeftDrag       = document.getElementById('nav-left-drag');
+	let navRight          = document.getElementById('nav-right');
+	let navRightDrag      = document.getElementById('nav-right-drag');
+	let openNavLeftBtn    = document.getElementById('open-nav-left');
+	let openNavRightBtn   = document.getElementById('open-nav-right');
+	let pageAnchors       = document.querySelectorAll('.pa');
+	let pageInfos         = document.querySelectorAll('.ib');
+	let pageList          = document.getElementById('page-list');
+	let programInfoBtn    = document.getElementById('program-info-btn');
+	let programInfoPopup  = document.getElementById('program-info-popup');
+	let quranVerses       = document.getElementById('quran-verses');
+	let suraList          = document.getElementById('sura-list');
+	let topBtn            = document.getElementById('top-btn');
 
-	let infos       = document.querySelectorAll('.ib');
-	for(let i=0; i<infos.length; i++)
+	// First install settings if exist
+	installSettings();
+	installEventListeners();
+
+	function installSettings()
 	{
-		infos[i].addEventListener('click', ()=>{infos[i].classList.toggle('open')});
+		// Set bookmark
+		if (localStorage.getItem('bookmarkTarget'))
+		{
+			bookmarkTarget = localStorage.getItem('bookmarkTarget');
+			bookmarkLabel  = localStorage.getItem('bookmarkLabel');
+			setBookmark(bookmarkTarget, bookmarkLabel);
+			gotoBookmark(bookmarkTarget);
+		}
+
+		// Set colors
+		if (localStorage.getItem('settingsColor'))
+		{
+			settingsColor   = localStorage.getItem('settingsColor');
+			colorList.value = settingsColor;
+			setColors(settingsColor);
+		}
+
+		// Set font family
+		if (localStorage.getItem('fontFamily'))
+		{
+			fontFamily = localStorage.getItem('fontFamily');
+			fontFamilyList.value = fontFamily;
+			setFontFamily(fontFamily);
+		}
+
+		// Set font size
+		if (localStorage.getItem('fontSize'))
+		{
+			fontSize = localStorage.getItem('fontSize');
+			fontSizeList.value = fontSize;
+			setFontSize(fontSize);
+		}
 	}
 
-
-	let pageAnchors = document.querySelectorAll('.pa');
-	let anchorList  = document.querySelector('#anchor-list');
-
-	for(let i=0; i<pageAnchors.length; i++)
+	function installEventListeners()
 	{
-		pageAnchors[i].addEventListener('click', addPageAnchor, false);
+		// Page infos
+		for(let i = 0; i < pageInfos.length; i++)
+		{
+			pageInfos[i].addEventListener('click', ()=>{pageInfos[i].classList.toggle('open')});
+		}
+
+		// Juz anchors
+		for(let i=0; i < juzAnchors.length; i++)
+		{
+			juzAnchors[i].addEventListener('click', addJuzAnchor, false);
+		}
+
+		// Page anchors
+		for(let i=0; i < pageAnchors.length; i++)
+		{
+			pageAnchors[i].addEventListener('click', addAnchor, false);
+		}
+
+		// Color list
+		colorList.addEventListener('change', (e)=>{
+			localStorage.setItem('settingsColor', colorList.value);
+			setColors(colorList.value);
+			closeNavs();
+		});
+
+		// Font family List
+		fontFamilyList.addEventListener('change', ()=>{
+			setFontFamily(fontFamilyList.value);
+			closeNavs();
+		});
+
+		// Font size list
+		fontSizeList.addEventListener('change', (e)=>{
+			setFontSize(fontSizeList.value);
+		});
+
+		// Sura List
+		suraList.addEventListener('change', suraToTop);
+
+		// Juz list
+		juzList.addEventListener('change', juzToTop);
+
+		// Page list
+		pageList.addEventListener('change', pageToTop);
+
+		// To quran top
+		topBtn.addEventListener('click', ()=>{document.getElementById('quran-top').scrollIntoView()});
+
+		// Program info
+		programInfoBtn.addEventListener('click', ()=>{programInfoPopup.classList.toggle('open')});
+		closePopupBtn.addEventListener('click', ()=>{programInfoPopup.classList.toggle('open')});
+
+		// Nav left
+		openNavLeftBtn.addEventListener('click', openNavLeft);
+		closeNavLeftBtn.addEventListener('click', toggleNavLeft);
+		navLeftDrag.addEventListener('swipeRight', openNavLeft);
+		navLeftDrag.addEventListener('swipeLeft', toggleNavLeft);
+		navLeft.addEventListener('swipeLeft', toggleNavLeft);
+
+		// Nav right
+		openNavRightBtn.addEventListener('click', openNavRight);
+		closeNavRightBtn.addEventListener('click', toggleNavRight);
+		navRightDrag.addEventListener('swipeRight', toggleNavRight);
+		navRightDrag.addEventListener('swipeLeft', openNavRight);
+		navRight.addEventListener('swipeRight', toggleNavRight);
+
 	}
 
-	if (localStorage.getItem('pageAnchorHref'))
+	function addJuzAnchor()
 	{
-		pageAnchorHref       = localStorage.getItem('pageAnchorHref');
-		pageBookmarkLabel    = localStorage.getItem('pageBookmarkLabel');
-		setBookmark();
+		bookmarkTarget = this.dataset.cah;
+		bookmarkLabel  = this.dataset.cbl;
+		setBookmark(bookmarkTarget, bookmarkLabel);
+		localStorage.setItem('bookmarkTarget', bookmarkTarget);
+		localStorage.setItem('bookmarkLabel', bookmarkLabel);
 	}
 
-	function addPageAnchor()
+	function addAnchor()
 	{
-		pageAnchorHref       = this.dataset.pah;
-		pageBookmarkLabel    = this.dataset.pbl;
-		setBookmark();
-		localStorage.setItem('pageAnchorHref', pageAnchorHref);
-		localStorage.setItem('pageBookmarkLabel', pageBookmarkLabel);
+		bookmarkTarget = this.dataset.pah;
+		bookmarkLabel  = this.dataset.pbl;
+		setBookmark(bookmarkTarget, bookmarkLabel);
+		localStorage.setItem('bookmarkTarget', bookmarkTarget);
+		localStorage.setItem('bookmarkLabel', bookmarkLabel);
 	}
 
-	function setBookmark()
+	function setBookmark(bookmarkTarget, bookmarkLabel)
 	{
-		anchorList.innerHTML = '<i class="rb">b</i> <a class="btn page-bookmark" href="#'+pageAnchorHref+'">p'+pageBookmarkLabel+'</a>';
+		bookmark = document.getElementById('bookmark');
+		if(bookmark) bookmark.remove();
+
+		newBookmark                = document.createElement('span');
+		newBookmark.id             = 'bookmark';
+		newBookmark.dataset.target = bookmarkTarget;
+		newBookmarkLabel           = document.createTextNode(bookmarkLabel);
+		newBookmark.appendChild(newBookmarkLabel);
+		newBookmark.addEventListener('click', ()=>{gotoBookmark(bookmarkTarget)});
+		bookmarkContainer.appendChild(newBookmark);
 	}
 
-	if (localStorage.getItem('settingsColor'))
+	function gotoBookmark(bookmarkTarget)
 	{
-		settingsColor = localStorage.getItem('settingsColor');
-		setColors();
+		document.getElementById(bookmarkTarget).scrollIntoView();
 	}
 
-	function setColors()
+	function setColors(color)
 	{
-		document.documentElement.style.setProperty('--nav_top_background_color', settingsColor);
-		document.documentElement.style.setProperty('--verse_number_color', settingsColor);
-		document.documentElement.style.setProperty('--sura_name_background_color', settingsColor);
-		document.documentElement.style.setProperty('--btn_hover_color', settingsColor);
+		document.documentElement.style.setProperty('--ntbc', color);
+		document.documentElement.style.setProperty('--vnc', color);
+		document.documentElement.style.setProperty('--snbc', color);
+		document.documentElement.style.setProperty('--btn_hover_color', color);
 	}
 
-	// Color list
-	let colorList   = document.querySelector('#color-list');
+	function setFontSize(fontSize)
+	{
+		document.documentElement.style.setProperty('--afs', fontSize);
+		localStorage.setItem('fontSize', fontSize);
+	}
 
-	colorList.addEventListener('change', (e)=>{
-		document.documentElement.style.setProperty('--nav_top_background_color', colorList.value);
-		document.documentElement.style.setProperty('--verse_number_color', colorList.value);
-		document.documentElement.style.setProperty('--sura_name_background_color', colorList.value);
-		document.documentElement.style.setProperty('--btn_hover_color', colorList.value);
-		localStorage.setItem('settingsColor', colorList.value);
-	});
-
-	// Font Size
-	let fontSize   = document.querySelector('#font-size');
-
-	fontSize.addEventListener('change', (e)=>{
-		quranVerses.style.fontSize = fontSize.value+'px';
-	});
-
-	// Font Family List
-	let fontFamilyList = document.querySelector('#font-family-list');
-
-	fontFamilyList.addEventListener('change', ()=>{
-		// selectedFont = fontFamilyList[fontFamilyList.selectedIndex].innerText;
-		quranVerses.style.fontFamily = fontFamilyList.value;
-		localStorage.setItem('font', fontFamilyList.value);
-		toggleNavRight();
-	});
-
-	// Left Nav
-	let openNavLeftBtn  = document.querySelector('#open-nav-left');
-	let closeNavLeftBtn = document.querySelector('#close-nav-left');
-	let navLeft         = document.querySelector('#nav-left');
-	let navLeftDrag     = document.querySelector('#nav-left-drag');
-
-	// Right Nav
-	let openNavRightBtn  = document.querySelector('#open-nav-right');
-	let closeNavRightBtn = document.querySelector('#close-nav-right');
-	let navRight         = document.querySelector('#nav-right');
-	let navRightDrag     = document.querySelector('#nav-right-drag');
-
-	openNavLeftBtn.addEventListener('click', openNavLeft);
-	closeNavLeftBtn.addEventListener('click', toggleNavLeft);
-	navLeftDrag.addEventListener('swipeRight', openNavLeft);
-	navLeftDrag.addEventListener('swipeLeft', toggleNavLeft);
-	navLeft.addEventListener('swipeLeft', toggleNavLeft);
-
-	openNavRightBtn.addEventListener('click', openNavRight);
-	closeNavRightBtn.addEventListener('click', toggleNavRight);
-	navRightDrag.addEventListener('swipeRight', toggleNavRight);
-	navRightDrag.addEventListener('swipeLeft', openNavRight);
-	navRight.addEventListener('swipeRight', toggleNavRight);
+	function setFontFamily(fontFamily)
+	{
+		document.documentElement.style.setProperty('--aff', fontFamily);
+		localStorage.setItem('fontFamily', fontFamily);
+	}
 
 	function closeNavs()
 	{
@@ -131,35 +219,24 @@ window.onload = ()=>{
 		navLeft.classList.remove('open');
 	}
 
-	// Suras
-	let suraList = document.querySelector('#sura-list');
-	suraList.addEventListener('change', suraToTop);
-
 	function suraToTop()
 	{
 		let sura = document.getElementById('sura_'+suraList.value);
 		sura.scrollIntoView();
 	}
 
-	// Juz list
-	let juzList = document.querySelector('#juz-list');
-	juzList.addEventListener('change', juzToTop);
-
 	function juzToTop()
 	{
-		let juz = document.getElementById('p_'+(juzList.value*20+1));
+		let juz = document.getElementById('j'+juzList.value);
 		juz.scrollIntoView();
 	}
 
-	// Pages
-	let pageList = document.querySelector('#page-list');
-	pageList.addEventListener('change', pageToTop);
-
 	function pageToTop()
 	{
-		let page = document.getElementById('p_'+pageList.value);
+		let page = document.getElementById('p'+pageList.value);
 		page.scrollIntoView();
 	}
+
 
 	// Cancelled
 	function getSura()
