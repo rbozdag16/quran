@@ -46,12 +46,12 @@ i {
 	margin-bottom: 2rem;
 	padding: 5px 0;
 	text-align: justify;
-	direction: rtl;
 	font-family: var(--aff);
 	font-size: var(--afs);
 	page-break-inside: avoid;
 	background-color: var(--abc);
 	color: var(--ac);
+	direction: rtl;
 }
 /*Sura names*/
 .sn {
@@ -202,7 +202,6 @@ i {
 	cursor: pointer;
 	user-select: none;
 	outline: none;
-	direction: ltr;
 }
 .btn:active {
 	background-image: none;
@@ -230,30 +229,29 @@ i {
 	text-align: center;
 	font-family: sans-serif;
 	border-top: var(--nth) solid var(--abc);
-	direction: ltr;
 }
 /*Page info paragraph*/
 .pip {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-start;
 	margin-bottom: 1rem;
 	padding-top: var(--nth);
 	font-family: sans-serif;
+	direction: ltr;
 }
 /*Page info*/
 .pi {
-	display: inline-block;
-	width: 0;
-	height: 0;
+	display: none;
 	font-family: sans-serif;
 	font-size: 1rem;
 	text-decoration: none;
 	color: var(--btn_color);
 	background-color: #fffde1;
-	overflow: hidden;
 	transition: width .5s;
 }
 /*Page anchor button*/
 .pa {
-	display: inline-block;
 	color: var(--btn_color);
 	border-color: var(--btn_color);
 }
@@ -273,12 +271,10 @@ i {
 	border: 1px solid var(--btn_hover_color);
 }
 .ib.open + .pi{
-	width: auto;
-	height: auto;
+	display: inline;
 }
 /*Juz anchor button*/
 .ca {
-	direction: ltr;
 	color: var(--btn_color);
 	border-color: var(--btn_color);
 }
