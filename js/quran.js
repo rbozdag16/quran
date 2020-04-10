@@ -24,9 +24,9 @@ window.onload = ()=>{
 	let suraList          = document.getElementById('sura-list');
 	let topBtn            = document.getElementById('top-btn');
 
-	// First install settings if exist
-	installSettings();
+	// First install event listeners for quick responsiveness then settings if exist
 	installEventListeners();
+	installSettings();
 
 	function installSettings()
 	{
