@@ -177,18 +177,21 @@ window.onload = ()=>{
 		document.documentElement.style.setProperty('--vnc', color);
 		document.documentElement.style.setProperty('--snbc', color);
 		document.documentElement.style.setProperty('--btn_hover_color', color);
+		closeNavs();
 	}
 
 	function setFontSize(fontSize)
 	{
 		document.documentElement.style.setProperty('--afs', fontSize);
 		localStorage.setItem('fontSize', fontSize);
+		closeNavs();
 	}
 
 	function setFontFamily(fontFamily)
 	{
 		document.documentElement.style.setProperty('--aff', fontFamily);
 		localStorage.setItem('fontFamily', fontFamily);
+		closeNavs();
 	}
 
 	function closeNavs()
@@ -223,18 +226,21 @@ window.onload = ()=>{
 	{
 		let sura = document.getElementById('sura_'+suraList.value);
 		sura.scrollIntoView();
+		closeNavs();
 	}
 
 	function juzToTop()
 	{
 		let juz = document.getElementById('j'+juzList.value);
 		juz.scrollIntoView();
+		closeNavs();
 	}
 
 	function pageToTop()
 	{
 		let page = document.getElementById('p'+pageList.value);
 		page.scrollIntoView();
+		closeNavs();
 	}
 
 
