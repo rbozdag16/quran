@@ -120,6 +120,7 @@ window.onload = ()=>{
 		programInfoBtn.addEventListener('click', openInfoPopup);
 
 		closePopupBtn.addEventListener('click', closeInfoPopup);
+		programInfoPopup.addEventListener('click', closeInfoPopup);
 
 		// Nav left
 		openNavLeftBtn.addEventListener('click', openNavLeft);
@@ -277,36 +278,5 @@ window.onload = ()=>{
 		closeNavs();
 		document.getElementById('p'+pageList.value).scrollIntoView();
 		window.scrollBy(0, -navTop.offsetHeight);
-	}
-
-
-	// Cancelled
-	function getSura()
-	{
-		suraId = suraList.value;
-		let formdata = new FormData();
-
-		formdata.append('sura_id', suraId);
-
-		fetch('/get_sura.php', {
-			method: 'post',
-			body: formdata
-		})
-		.then(res=>{
-			if(!res.ok) throw new Error("HTTP Error, status = " + res.status);
-			return res.text();
-		})
-		.then(res=>{
-			quranVerses.innerHTML = res;
-			document.scrollTop = 0;
-			document.documentElement.scrollTop = 0;
-			suraName.innerHTML    = suraList[suraList.selectedIndex].dataset.suraTr+' ('+suraList[suraList.selectedIndex].dataset.suraName+')';
-			suraWord.classList.toggle('hidden');
-		})
-		.catch(err=>{
-			console.log(err);
-		});
-		localStorage.setItem('sura_id', suraId);
-		closeNavLeft();
 	}
 };
