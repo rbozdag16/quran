@@ -3,7 +3,7 @@
 	--ac: black; /* arabic color */
 	--aff: 'Hamdullah'; /* arabic font family */
 	--afs: 28px; /* arabic font size */
-	--asp: 10px; /* arabic side padding */
+	--stw: 30px; /* swipe trigger width */
 	--btn_color: brown; /* button color */
 	--btn_hover_color: brown;
 	--max-width: 768px; /* maximum width for container */
@@ -72,13 +72,6 @@ i {
 	color: white;
 	cursor: pointer;
 	z-index: 100;
-}
-#anchor-list {
-}
-.font-selector {
-}
-.sura-selector {
-	display: block;
 }
 .sajdah {
 	color: var(--sajdah-color);
@@ -156,7 +149,7 @@ i {
 #nav-right-drag {
 	position: fixed;
 	top: var(--nth);
-	width: var(--asp);
+	width: var(--stw);
 	height: 100%;
 	z-index: 99;
 }
@@ -209,13 +202,13 @@ i {
 /*Sura names*/
 .sn {
 	padding: 1rem;
-	background-color: var(--snbc);
 	font-family: sans-serif;
 	font-size: 18px;
 	text-align: center;
-	color: #eee;
+	color: var(--btn_color);
 	page-break-inside: avoid;
 	direction: ltr;
+	margin-top: 1rem;
 }
 /*Verse numbers*/
 .vn {
@@ -234,7 +227,7 @@ i {
 .pip {
 	display: flex;
 	flex-direction: row-reverse;
-	justify-content: flex-start;
+	justify-content: center;
 	margin-bottom: 1rem;
 	font-family: sans-serif;
 	direction: ltr;
