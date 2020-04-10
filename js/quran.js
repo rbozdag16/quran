@@ -1,6 +1,7 @@
 window.onload = ()=>{
 	// Define elements
 	let bookmarkContainer = document.getElementById('bookmark-container');
+	let bookmarkIcon      = document.getElementById('bookmark-icon');
 	let closeNavLeftBtn   = document.getElementById('close-nav-left');
 	let closeNavRightBtn  = document.getElementById('close-nav-right');
 	let closePopupBtn     = document.getElementById('close-popup-btn');
@@ -111,6 +112,9 @@ window.onload = ()=>{
 		// To quran top
 		topBtn.addEventListener('click', quranToTop);
 
+		// Clean bookmark
+		bookmarkIcon.addEventListener('click', removeBookmark);
+
 		// Program info
 		programInfoBtn.addEventListener('click', openInfoPopup);
 
@@ -170,9 +174,18 @@ window.onload = ()=>{
 		document.getElementById(bookmarkTarget).scrollIntoView();
 	}
 
+	function removeBookmark()
+	{
+		bookmark = document.getElementById('bookmark')
+		if(bookmark) bookmark.remove();
+		localStorage.removeItem('bookmarkTarget');
+		localStorage.removeItem('bookmarkLabel');
+	}
+
 	function setColors(color)
 	{
 		document.documentElement.style.setProperty('--ntbc', color);
+		document.documentElement.style.setProperty('--nsbc', color);
 		document.documentElement.style.setProperty('--vnc', color);
 		document.documentElement.style.setProperty('--snbc', color);
 		document.documentElement.style.setProperty('--btn_hover_color', color);
