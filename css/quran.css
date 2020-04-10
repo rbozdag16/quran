@@ -210,16 +210,12 @@ i {
 .sn {
 	padding: 1rem;
 	background-color: var(--snbc);
-	border-top: var(--nth) solid var(--abc);
 	font-family: sans-serif;
 	font-size: 18px;
 	text-align: center;
 	color: #eee;
 	page-break-inside: avoid;
 	direction: ltr;
-}
-#sura_1 {
-	border-top: none;
 }
 /*Verse numbers*/
 .vn {
@@ -233,10 +229,6 @@ i {
 	padding: 10px;
 	text-align: center;
 	font-family: sans-serif;
-	border-top: var(--nth) solid var(--abc);
-}
-.jip:first-child {
-	border-top: none;
 }
 /*Page info paragraph*/
 .pip {
@@ -244,12 +236,8 @@ i {
 	flex-direction: row-reverse;
 	justify-content: flex-start;
 	margin-bottom: 1rem;
-	padding-top: var(--nth);
 	font-family: sans-serif;
 	direction: ltr;
-}
-#p0 {
-	padding-top: 0;
 }
 /*Page info*/
 .pi {
