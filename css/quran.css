@@ -228,7 +228,7 @@ i {
 	display: flex;
 	flex-direction: row-reverse;
 	justify-content: center;
-	margin-bottom: 1rem;
+	margin: 1rem;
 	font-family: sans-serif;
 	direction: ltr;
 }
@@ -332,6 +332,21 @@ i {
 }
 .ul.icons li {
 	margin-bottom: .8rem;
+}
+.footer {
+	height: 3rem;
+	width: 100%;
+	margin-top: 2rem;
+	padding: .5rem 1rem;
+	background-color: gray;
+	color: white;
+	font-family: sans-serif;
+	text-align: center;
+}
+.footer a {
+	font-size: 1rem;
+	text-decoration: none;
+	color: white;
 }
 @media print {
 	.container {
