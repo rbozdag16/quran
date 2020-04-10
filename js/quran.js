@@ -166,6 +166,7 @@ window.onload = ()=>{
 
 	function gotoBookmark(bookmarkTarget)
 	{
+		closeNavs();
 		document.getElementById(bookmarkTarget).scrollIntoView();
 	}
 
