@@ -1,7 +1,7 @@
 {
 	"name": "Easy Quran",
 	"short_name": "Easy Quran",
-	"description": "Easy to read",
+	"description": "Easy to read and scroll",
 	"start_url": "/",
 	"display": "fullscreen",
 	"background_color": "#008b8b",
