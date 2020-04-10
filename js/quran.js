@@ -86,15 +86,12 @@ window.onload = ()=>{
 
 		// Color list
 		colorList.addEventListener('change', (e)=>{
-			localStorage.setItem('settingsColor', colorList.value);
 			setColors(colorList.value);
-			closeNavs();
 		});
 
 		// Font family List
 		fontFamilyList.addEventListener('change', ()=>{
 			setFontFamily(fontFamilyList.value);
-			closeNavs();
 		});
 
 		// Font size list
@@ -112,25 +109,26 @@ window.onload = ()=>{
 		pageList.addEventListener('change', pageToTop);
 
 		// To quran top
-		topBtn.addEventListener('click', ()=>{document.getElementById('quran-top').scrollIntoView()});
+		topBtn.addEventListener('click', quranToTop);
 
 		// Program info
-		programInfoBtn.addEventListener('click', ()=>{programInfoPopup.classList.toggle('open')});
-		closePopupBtn.addEventListener('click', ()=>{programInfoPopup.classList.toggle('open')});
+		programInfoBtn.addEventListener('click', openInfoPopup);
+
+		closePopupBtn.addEventListener('click', closeInfoPopup);
 
 		// Nav left
 		openNavLeftBtn.addEventListener('click', openNavLeft);
-		closeNavLeftBtn.addEventListener('click', toggleNavLeft);
+		closeNavLeftBtn.addEventListener('click', closeNavLeft);
 		navLeftDrag.addEventListener('swipeRight', openNavLeft);
-		navLeftDrag.addEventListener('swipeLeft', toggleNavLeft);
-		navLeft.addEventListener('swipeLeft', toggleNavLeft);
+		navLeftDrag.addEventListener('swipeLeft', closeNavLeft);
+		navLeft.addEventListener('swipeLeft', closeNavLeft);
 
 		// Nav right
 		openNavRightBtn.addEventListener('click', openNavRight);
-		closeNavRightBtn.addEventListener('click', toggleNavRight);
-		navRightDrag.addEventListener('swipeRight', toggleNavRight);
+		closeNavRightBtn.addEventListener('click', closeNavRight);
+		navRightDrag.addEventListener('swipeRight', closeNavRight);
 		navRightDrag.addEventListener('swipeLeft', openNavRight);
-		navRight.addEventListener('swipeRight', toggleNavRight);
+		navRight.addEventListener('swipeRight', closeNavRight);
 
 	}
 
@@ -177,6 +175,7 @@ window.onload = ()=>{
 		document.documentElement.style.setProperty('--vnc', color);
 		document.documentElement.style.setProperty('--snbc', color);
 		document.documentElement.style.setProperty('--btn_hover_color', color);
+		localStorage.setItem('settingsColor', color);
 		closeNavs();
 	}
 
@@ -198,49 +197,67 @@ window.onload = ()=>{
 	{
 		navLeft.classList.remove('open');
 		navRight.classList.remove('open');
+		programInfoPopup.classList.remove('open');
 	}
 
-	function toggleNavLeft()
+	function closeNavLeft()
 	{
-		navLeft.classList.toggle('open');
+		navLeft.classList.remove('open');
 	}
 
-	function toggleNavRight()
+	function closeNavRight()
 	{
-		navRight.classList.toggle('open');
+		navRight.classList.remove('open');
 	}
 
 	function openNavLeft()
 	{
 		navLeft.classList.toggle('open');
 		navRight.classList.remove('open');
+		programInfoPopup.classList.remove('open');
 	}
 
 	function openNavRight()
 	{
-		navRight.classList.toggle('open');
 		navLeft.classList.remove('open');
+		navRight.classList.toggle('open');
+		programInfoPopup.classList.remove('open');
+	}
+
+	function openInfoPopup()
+	{
+		navLeft.classList.remove('open');
+		navRight.classList.remove('open');
+		programInfoPopup.classList.toggle('open');
+	}
+
+	function closeInfoPopup()
+	{
+		programInfoPopup.classList.remove('open');
+	}
+
+	function quranToTop()
+	{
+		closeNavs();
+		document.getElementById('quran-top').scrollIntoView();
 	}
 
 	function suraToTop()
 	{
-		let sura = document.getElementById('sura_'+suraList.value);
-		sura.scrollIntoView();
 		closeNavs();
+		document.getElementById('sura_'+suraList.value).scrollIntoView();
 	}
 
 	function juzToTop()
 	{
-		let juz = document.getElementById('j'+juzList.value);
-		juz.scrollIntoView();
 		closeNavs();
+		document.getElementById('j'+juzList.value).scrollIntoView();
 	}
 
 	function pageToTop()
 	{
-		let page = document.getElementById('p'+pageList.value);
-		page.scrollIntoView();
 		closeNavs();
+		document.getElementById('p'+pageList.value).scrollIntoView();
 	}
 
 
@@ -271,6 +288,6 @@ window.onload = ()=>{
 			console.log(err);
 		});
 		localStorage.setItem('sura_id', suraId);
-		toggleNavLeft();
+		closeNavLeft();
 	}
 };
