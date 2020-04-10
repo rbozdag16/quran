@@ -14,6 +14,7 @@ window.onload = ()=>{
 	let navLeftDrag       = document.getElementById('nav-left-drag');
 	let navRight          = document.getElementById('nav-right');
 	let navRightDrag      = document.getElementById('nav-right-drag');
+	let navTop            = document.getElementById('nav-top');
 	let openNavLeftBtn    = document.getElementById('open-nav-left');
 	let openNavRightBtn   = document.getElementById('open-nav-right');
 	let pageAnchors       = document.querySelectorAll('.pa');
@@ -172,6 +173,7 @@ window.onload = ()=>{
 	{
 		closeNavs();
 		document.getElementById(bookmarkTarget).scrollIntoView();
+		window.scrollBy(0, -navTop.offsetHeight);
 	}
 
 	function removeBookmark()
@@ -260,18 +262,21 @@ window.onload = ()=>{
 	{
 		closeNavs();
 		document.getElementById('sura_'+suraList.value).scrollIntoView();
+		window.scrollBy(0, -navTop.offsetHeight);
 	}
 
 	function juzToTop()
 	{
 		closeNavs();
 		document.getElementById('j'+juzList.value).scrollIntoView();
+		window.scrollBy(0, -navTop.offsetHeight);
 	}
 
 	function pageToTop()
 	{
 		closeNavs();
 		document.getElementById('p'+pageList.value).scrollIntoView();
+		window.scrollBy(0, -navTop.offsetHeight);
 	}
 
 
