@@ -53,25 +53,6 @@ i {
 	color: var(--ac);
 	direction: rtl;
 }
-/*Sura names*/
-.sn {
-	padding: 1rem;
-	background-color: var(--snbc);
-	border-top: var(--nth) solid var(--abc);
-	font-family: sans-serif;
-	font-size: 18px;
-	font-weight: lighter;
-	text-align: center;
-	color: #eee;
-	page-break-inside: avoid;
-	direction: ltr;
-}
-/*Verse numbers*/
-.vn {
-	font-family: 'rb-quran', sans-serif;
-	font-size: .5em;
-	color: var(--vnc);
-}
 #nav-top {
 	position: fixed;
 	display: flex;
@@ -225,6 +206,27 @@ i {
 	margin-right: 1rem;
 	cursor: pointer;
 }
+/*Sura names*/
+.sn {
+	padding: 1rem;
+	background-color: var(--snbc);
+	border-top: var(--nth) solid var(--abc);
+	font-family: sans-serif;
+	font-size: 18px;
+	text-align: center;
+	color: #eee;
+	page-break-inside: avoid;
+	direction: ltr;
+}
+#sura_1 {
+	border-top: none;
+}
+/*Verse numbers*/
+.vn {
+	font-family: 'rb-quran', sans-serif;
+	font-size: .5em;
+	color: var(--vnc);
+}
 /*Juz info paragraph*/
 .jip {
 	margin: 0;
@@ -232,6 +234,9 @@ i {
 	text-align: center;
 	font-family: sans-serif;
 	border-top: var(--nth) solid var(--abc);
+}
+.jip:first-child {
+	border-top: none;
 }
 /*Page info paragraph*/
 .pip {
@@ -242,6 +247,9 @@ i {
 	padding-top: var(--nth);
 	font-family: sans-serif;
 	direction: ltr;
+}
+#p0 {
+	padding-top: 0;
 }
 /*Page info*/
 .pi {
@@ -325,8 +333,8 @@ i {
 	color: var(--btn_hover_color);
 }
 .popup-content {
-	max-height: 30%;
-	overflow: auto;
+	max-height: 70vh;
+	overflow-y: auto;
 }
 .popup h3, .popup h4 {
 	margin-bottom: 1em;
@@ -340,6 +348,9 @@ i {
 	padding-left: 2rem;
 	list-style-type: disc;
 	color: var(--ntbc);
+}
+.ul.icons li {
+	margin-bottom: .8rem;
 }
 @media print {
 	.container {
