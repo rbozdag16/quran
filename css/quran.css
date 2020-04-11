@@ -3,7 +3,6 @@
 	--ac: black; /* arabic color */
 	--aff: 'Hamdullah'; /* arabic font family */
 	--afs: 28px; /* arabic font size */
-	--asp: 10px; /* arabic side padding */
 	--btn_color: brown; /* button color */
 	--btn_hover_color: brown;
 	--max-width: 768px; /* maximum width for container */
@@ -15,6 +14,7 @@
 	--snbc: brown; /* sura name background color */
 	--verse-color: black;
 	--vnc: brown; /* verse number color */
+	--brs: 5px; /* border radius */
 }
 * {
 	margin: 0;
@@ -31,20 +31,29 @@ ul {
 }
 i {
 	font-style: normal;
-	color: var(--verse-color);
+}
+.btn {
+	padding: 2px 6px;
+	background-color: transparent;
+	border: 1px solid transparent;
+	border-radius: var(--brs);
+	color: white;
+	font-size: 1rem;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	user-select: none;
+	outline: none;
 }
 .container {
 	position: relative;
 	width: 100%;
 	max-width: var(--max-width);
-	margin: 0 auto 1rem;
+	margin: 0 auto;
 	padding: 0 5px;
 }
 .arabic {
-	position: relative;
-	top: var(--nth);
-	margin-bottom: 2rem;
-	padding: 5px 0;
 	text-align: justify;
 	font-family: var(--aff);
 	font-size: var(--afs);
@@ -57,6 +66,7 @@ i {
 	position: fixed;
 	display: flex;
 	justify-content: space-between;
+	top: 0;
 	left: 0;
 	right: 0;
 	max-height: var(--nth);
@@ -73,13 +83,6 @@ i {
 	cursor: pointer;
 	z-index: 100;
 }
-#anchor-list {
-}
-.font-selector {
-}
-.sura-selector {
-	display: block;
-}
 .sajdah {
 	color: var(--sajdah-color);
 }
@@ -95,8 +98,8 @@ i {
 	max-width: 400px;
 	height: 100vh;
 	margin: 0;
-	padding: 1rem;
-	background-color: var(--nsbc);
+	padding: 3rem 1rem;
+	background-color: gray;
 	font-size: 1rem;
 	color: white;
 	opacity: 1;
@@ -105,9 +108,11 @@ i {
 }
 #nav-left {
 	left: -70%;
+	border-top-right-radius: var(--brs);
 }
 #nav-right {
 	right: -70%;
+	border-top-left-radius: var(--brs);
 }
 #nav-left.open {
 	left: 0;
@@ -115,18 +120,20 @@ i {
 #nav-right.open {
 	right: 0;
 }
-#close-nav-left,
-#close-nav-right {
+.close-btn {
+	position: absolute;
+	top: 10px;
 	cursor: pointer;
+	color: lightgray;
+}
+.close-btn.right {
+	right: 10px;
+}
+.close-btn.left {
+	left: 10px;
+}
+.close-btn:hover {
 	color: white;
-}
-#close-nav-left:hover,
-#close-nav-right:hover {
-	color: #ddd;
-}
-.close-btn-p {
-	font-size: 1.6rem;
-	margin-bottom: 1rem;
 }
 .text-right {
 	text-align: right;
@@ -136,8 +143,8 @@ i {
 }
 .settings {
 	display: grid;
-	grid-template-columns: 40% 60%;
-	grid-gap: 5px;
+	grid-template-columns: 30% 60%;
+	grid-gap: 20px 5px;
 	align-items: center;
 }
 .settings dt {
@@ -149,22 +156,30 @@ i {
 .settings select {
 	width: 100%;
 	height: 2rem;
+	padding: 5px;
 	border-image: none;
+	border-radius: 5px;
 	font-size: 1rem;
+	outline: none;
 }
-#nav-left-drag,
-#nav-right-drag {
-	position: fixed;
-	top: var(--nth);
-	width: var(--asp);
-	height: 100%;
-	z-index: 99;
+.goto-page-container {
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	grid-gap: 5px;
+	align-items: center;
 }
-#nav-left-drag {
-	left: 0;
+.btn-nav {
+	height: 2rem;
+	color: white;
+	border: 1px solid white;
+	border-radius: var(--brs);
+	cursor: pointer;
+	user-select: none;
+	outline: none;
 }
-#nav-right-drag {
-	right: 0;
+.btn-nav:hover {
+	color: var(--btn_hover_color);
+	background-color: white;
 }
 .hidden {
 	visibility: hidden;
@@ -172,34 +187,19 @@ i {
 .visible {
 	visibility: visible;
 }
-.btn {
-	padding: 2px;
-	background-color: transparent;
-	border: 1px solid transparent;
-	border-radius: .25rem;
-	color: white;
-	font-size: 1rem;
-	text-decoration: none;
-	text-align: center;
-	vertical-align: middle;
-	cursor: pointer;
-	user-select: none;
-	outline: none;
-}
-.btn:active {
-	background-image: none;
+.rb {
+	font-size: 1.2rem;
 }
 /*Page bookmark*/
 #bookmark {
-	padding: 2px 4px;
+	padding: 2px 6px;
 	color: white;
 	border: 1px solid rgba(255, 255, 255, 0.8);
-	border-radius: 4px;
+	border-radius: var(--brs);
 	cursor: pointer;
 }
 #bookmark:hover {
 	color: var(--btn_hover_color);
-	border-color: var(--ntbc);
 	background-color: white;
 }
 #bookmark-icon {
@@ -209,17 +209,13 @@ i {
 /*Sura names*/
 .sn {
 	padding: 1rem;
-	background-color: var(--snbc);
-	border-top: var(--nth) solid var(--abc);
 	font-family: sans-serif;
 	font-size: 18px;
 	text-align: center;
-	color: #eee;
+	color: var(--btn_color);
 	page-break-inside: avoid;
 	direction: ltr;
-}
-#sura_1 {
-	border-top: none;
+	margin-top: 1rem;
 }
 /*Verse numbers*/
 .vn {
@@ -227,77 +223,45 @@ i {
 	font-size: .5em;
 	color: var(--vnc);
 }
-/*Juz info paragraph*/
-.jip {
-	margin: 0;
-	padding: 10px;
-	text-align: center;
-	font-family: sans-serif;
-	border-top: var(--nth) solid var(--abc);
-}
-.jip:first-child {
-	border-top: none;
-}
 /*Page info paragraph*/
 .pip {
 	display: flex;
 	flex-direction: row-reverse;
-	justify-content: flex-start;
-	margin-bottom: 1rem;
-	padding-top: var(--nth);
-	font-family: sans-serif;
+	margin: 1rem 0;
+	font: 1rem sans-serif;
+	color: gray;
 	direction: ltr;
 }
-#p0 {
-	padding-top: 0;
-}
-/*Page info*/
-.pi {
-	display: none;
-	font-family: sans-serif;
-	font-size: 1rem;
-	text-decoration: none;
-	color: var(--btn_color);
-	/*background-color: #fffde1;*/
-	transition: width .5s;
-}
-.pi .rb {
-	color: var(--btn_color);
-}
+/*Juz anchor button*/
 /*Page anchor button*/
-.pa {
-	color: var(--btn_color);
-	border-color: var(--btn_color);
+.ca, .pa, .ib {
+	margin-left: 1rem;
+	padding: 2px 6px;
+	color: gray;
+	border: 1px solid gray;
+	border-radius: var(--brs);
+	cursor: pointer;
+	user-select: none;
+	outline: none;
 }
-.pa:hover {
+.ca:hover, .pa:hover {
 	color: var(--btn_hover_color);
 	border-color: var(--btn_hover_color);
 }
 /*Page info button*/
 .ib {
-	margin-right: 1rem;
-	font-size: 1rem;
-	color: var(--btn_color);
-	border: 1px solid transparent;
+	border: none;
 }
 .ib:hover {
 	color: var(--btn_hover_color);
-	border: 1px solid var(--btn_hover_color);
 }
 .ib.open + .pi{
 	display: inline;
 }
-/*Juz anchor button*/
-.ca {
-	color: var(--btn_color);
-	border-color: var(--btn_color);
-}
-.ca:hover {
-	color: var(--btn_hover_color);
-	border-color: var(--btn_hover_color);
-}
-.rb {
-	font-size: 1.2rem;
+/*Page info*/
+.pi {
+	display: none;
+	transition: width .5s;
 }
 .overlay {
 	display: none;
@@ -320,17 +284,7 @@ i {
 	margin: 60px auto;
 	padding: 10px;
 	background-color: white;
-	border-radius: 5px;
-}
-#close-popup-btn {
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	cursor: pointer;
-	color: var(--btn_color);
-}
-#close-popup-btn:hover {
-	color: var(--btn_hover_color);
+	border-radius: var(--brs);
 }
 .popup-content {
 	max-height: 70vh;
@@ -351,6 +305,26 @@ i {
 }
 .ul.icons li {
 	margin-bottom: .8rem;
+}
+footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 5px;
+	background-color: gray;
+	color: white;
+	font-family: sans-serif;
+	text-align: center;
+}
+footer a {
+	text-decoration: none;
+	color: white;
+}
+.logo {
+	margin-right: 1rem;
 }
 @media print {
 	.container {
