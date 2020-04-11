@@ -33,7 +33,7 @@ self.addEventListener('install', evt => {
 	console.log('Service worker installed.');
 	evt.waitUntil(
 		caches.open(cacheName).then(cache => {
-			staticContentToCache.forEach(function(file){cache.add(file).catch(err=>console.error(err))});
+			staticContentToCache.forEach(function(file){cache.add(file).catch((err)=>{console.error(err)})});
 		})
 	);
 });
