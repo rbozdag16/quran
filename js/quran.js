@@ -10,20 +10,21 @@ window.onload = ()=>{
 	let fontSizeList      = document.getElementById('font-size-list');
 	let juzAnchors        = document.querySelectorAll('.ca');
 	let juzList           = document.getElementById('juz-list');
+	let gotoPage          = document.getElementById('goto-page');
 	let navLeft           = document.getElementById('nav-left');
-	let navLeftDrag       = document.getElementById('nav-left-drag');
 	let navRight          = document.getElementById('nav-right');
-	let navRightDrag      = document.getElementById('nav-right-drag');
+	let navTop            = document.getElementById('nav-top');
 	let openNavLeftBtn    = document.getElementById('open-nav-left');
 	let openNavRightBtn   = document.getElementById('open-nav-right');
 	let pageAnchors       = document.querySelectorAll('.pa');
 	let pageInfos         = document.querySelectorAll('.ib');
-	let pageList          = document.getElementById('page-list');
+	let pageNo            = document.getElementById('page-no');
 	let programInfoBtn    = document.getElementById('program-info-btn');
 	let programInfoPopup  = document.getElementById('program-info-popup');
 	let quranVerses       = document.getElementById('quran-verses');
 	let suraList          = document.getElementById('sura-list');
 	let topBtn            = document.getElementById('top-btn');
+	let resetBtn          = document.getElementById('reset-btn');
 
 	// First install event listeners for quick responsiveness then settings if exist
 	installEventListeners();
@@ -40,14 +41,6 @@ window.onload = ()=>{
 			gotoBookmark(bookmarkTarget);
 		}
 
-		// Set colors
-		if (localStorage.getItem('settingsColor'))
-		{
-			settingsColor   = localStorage.getItem('settingsColor');
-			colorList.value = settingsColor;
-			setColors(settingsColor);
-		}
-
 		// Set font family
 		if (localStorage.getItem('fontFamily'))
 		{
@@ -62,6 +55,14 @@ window.onload = ()=>{
 			fontSize = localStorage.getItem('fontSize');
 			fontSizeList.value = fontSize;
 			setFontSize(fontSize);
+		}
+
+		// Set colors
+		if (localStorage.getItem('settingsColor'))
+		{
+			settingsColor   = localStorage.getItem('settingsColor');
+			colorList.value = settingsColor;
+			setColors(settingsColor);
 		}
 	}
 
@@ -85,11 +86,6 @@ window.onload = ()=>{
 			pageAnchors[i].addEventListener('click', addAnchor, false);
 		}
 
-		// Color list
-		colorList.addEventListener('change', (e)=>{
-			setColors(colorList.value);
-		});
-
 		// Font family List
 		fontFamilyList.addEventListener('change', ()=>{
 			setFontFamily(fontFamilyList.value);
@@ -100,14 +96,25 @@ window.onload = ()=>{
 			setFontSize(fontSizeList.value);
 		});
 
+		// Color list
+		colorList.addEventListener('change', (e)=>{
+			setColors(colorList.value);
+		});
+
+		// Reset settings button
+		resetBtn.addEventListener('click', (e)=>{
+			resetSettings();
+		});
+
 		// Sura List
 		suraList.addEventListener('change', suraToTop);
 
 		// Juz list
 		juzList.addEventListener('change', juzToTop);
 
-		// Page list
-		pageList.addEventListener('change', pageToTop);
+		// Page no input
+		// pageNo.addEventListener('change', pageToTop);
+		gotoPage.addEventListener('click', pageToTop);
 
 		// To quran top
 		topBtn.addEventListener('click', quranToTop);
@@ -123,15 +130,13 @@ window.onload = ()=>{
 		// Nav left
 		openNavLeftBtn.addEventListener('click', openNavLeft);
 		closeNavLeftBtn.addEventListener('click', closeNavLeft);
-		navLeftDrag.addEventListener('swipeRight', openNavLeft);
-		navLeftDrag.addEventListener('swipeLeft', closeNavLeft);
+		quranVerses.addEventListener('swipeRight', openNavLeft);
 		navLeft.addEventListener('swipeLeft', closeNavLeft);
 
 		// Nav right
 		openNavRightBtn.addEventListener('click', openNavRight);
 		closeNavRightBtn.addEventListener('click', closeNavRight);
-		navRightDrag.addEventListener('swipeRight', closeNavRight);
-		navRightDrag.addEventListener('swipeLeft', openNavRight);
+		quranVerses.addEventListener('swipeLeft', openNavRight);
 		navRight.addEventListener('swipeRight', closeNavRight);
 
 	}
@@ -172,6 +177,7 @@ window.onload = ()=>{
 	{
 		closeNavs();
 		document.getElementById(bookmarkTarget).scrollIntoView();
+		window.scrollBy(0, -navTop.offsetHeight);
 	}
 
 	function removeBookmark()
@@ -205,6 +211,16 @@ window.onload = ()=>{
 		document.documentElement.style.setProperty('--aff', fontFamily);
 		localStorage.setItem('fontFamily', fontFamily);
 		closeNavs();
+	}
+
+	function resetSettings()
+	{
+		fontFamilyList.value = 'Hamdullah';
+		fontSizeList.value   = '28px';
+		colorList.value      = 'brown';
+		fontFamilyList.dispatchEvent(new Event('change', {'bubbles': true}));
+		fontSizeList.dispatchEvent(new Event('change', {'bubbles': true}));
+		colorList.dispatchEvent(new Event('change', {'bubbles': true}));
 	}
 
 	function closeNavs()
@@ -260,48 +276,20 @@ window.onload = ()=>{
 	{
 		closeNavs();
 		document.getElementById('sura_'+suraList.value).scrollIntoView();
+		window.scrollBy(0, -navTop.offsetHeight);
 	}
 
 	function juzToTop()
 	{
 		closeNavs();
 		document.getElementById('j'+juzList.value).scrollIntoView();
+		window.scrollBy(0, -navTop.offsetHeight);
 	}
 
 	function pageToTop()
 	{
 		closeNavs();
-		document.getElementById('p'+pageList.value).scrollIntoView();
-	}
-
-
-	// Cancelled
-	function getSura()
-	{
-		suraId = suraList.value;
-		let formdata = new FormData();
-
-		formdata.append('sura_id', suraId);
-
-		fetch('/get_sura.php', {
-			method: 'post',
-			body: formdata
-		})
-		.then(res=>{
-			if(!res.ok) throw new Error("HTTP Error, status = " + res.status);
-			return res.text();
-		})
-		.then(res=>{
-			quranVerses.innerHTML = res;
-			document.scrollTop = 0;
-			document.documentElement.scrollTop = 0;
-			suraName.innerHTML    = suraList[suraList.selectedIndex].dataset.suraTr+' ('+suraList[suraList.selectedIndex].dataset.suraName+')';
-			suraWord.classList.toggle('hidden');
-		})
-		.catch(err=>{
-			console.log(err);
-		});
-		localStorage.setItem('sura_id', suraId);
-		closeNavLeft();
+		document.getElementById('p'+pageNo.value).scrollIntoView();
+		window.scrollBy(0, -navTop.offsetHeight);
 	}
 };
