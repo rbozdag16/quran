@@ -3,7 +3,6 @@
 	--ac: black; /* arabic color */
 	--aff: 'Hamdullah'; /* arabic font family */
 	--afs: 28px; /* arabic font size */
-	--stw: 30px; /* swipe trigger width */
 	--btn_color: brown; /* button color */
 	--btn_hover_color: brown;
 	--max-width: 768px; /* maximum width for container */
@@ -31,20 +30,15 @@ ul {
 }
 i {
 	font-style: normal;
-	color: var(--verse-color);
 }
 .container {
 	position: relative;
 	width: 100%;
 	max-width: var(--max-width);
-	margin: 0 auto 1rem;
+	margin: 0 auto;
 	padding: 0 5px;
 }
 .arabic {
-	position: relative;
-	top: var(--nth);
-	margin-bottom: 2rem;
-	padding: 5px 0;
 	text-align: justify;
 	font-family: var(--aff);
 	font-size: var(--afs);
@@ -57,6 +51,7 @@ i {
 	position: fixed;
 	display: flex;
 	justify-content: space-between;
+	top: 0;
 	left: 0;
 	right: 0;
 	max-height: var(--nth);
@@ -89,7 +84,7 @@ i {
 	height: 100vh;
 	margin: 0;
 	padding: 1rem;
-	background-color: var(--nsbc);
+	background-color: gray;
 	font-size: 1rem;
 	color: white;
 	opacity: 1;
@@ -129,8 +124,8 @@ i {
 }
 .settings {
 	display: grid;
-	grid-template-columns: 40% 60%;
-	grid-gap: 5px;
+	grid-template-columns: 30% 60%;
+	grid-gap: 20px 5px;
 	align-items: center;
 }
 .settings dt {
@@ -145,42 +140,14 @@ i {
 	border-image: none;
 	font-size: 1rem;
 }
-#nav-left-drag,
-#nav-right-drag {
-	position: fixed;
-	top: var(--nth);
-	width: var(--stw);
-	height: 100%;
-	z-index: 99;
-}
-#nav-left-drag {
-	left: 0;
-}
-#nav-right-drag {
-	right: 0;
-}
 .hidden {
 	visibility: hidden;
 }
 .visible {
 	visibility: visible;
 }
-.btn {
-	padding: 2px;
-	background-color: transparent;
-	border: 1px solid transparent;
-	border-radius: .25rem;
-	color: white;
-	font-size: 1rem;
-	text-decoration: none;
-	text-align: center;
-	vertical-align: middle;
-	cursor: pointer;
-	user-select: none;
-	outline: none;
-}
-.btn:active {
-	background-image: none;
+.rb {
+	font-size: 1.2rem;
 }
 /*Page bookmark*/
 #bookmark {
@@ -216,69 +183,59 @@ i {
 	font-size: .5em;
 	color: var(--vnc);
 }
-/*Juz info paragraph*/
-.jip {
-	margin: 0;
-	padding: 10px;
-	text-align: center;
-	font-family: sans-serif;
-}
 /*Page info paragraph*/
 .pip {
 	display: flex;
 	flex-direction: row-reverse;
-	justify-content: center;
-	margin: 1rem;
-	font-family: sans-serif;
+	margin: 1rem 0;
+	font: 1rem sans-serif;
+	color: gray;
 	direction: ltr;
 }
-/*Page info*/
-.pi {
-	display: none;
-	font-family: sans-serif;
+/*Juz anchor button*/
+/*Page anchor button*/
+.btn {
+	padding: 2px;
+	background-color: transparent;
+	border: 1px solid transparent;
+	border-radius: .25rem;
+	color: white;
 	font-size: 1rem;
 	text-decoration: none;
-	color: var(--btn_color);
-	/*background-color: #fffde1;*/
-	transition: width .5s;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	user-select: none;
+	outline: none;
 }
-.pi .rb {
-	color: var(--btn_color);
+.ca, .pa, .ib {
+	margin-left: 1rem;
+	padding: 2px 8px;
+	color: gray;
+	border: 1px solid gray;
+	border-radius: 4px;
+	cursor: pointer;
+	user-select: none;
+	outline: none;
 }
-/*Page anchor button*/
-.pa {
-	color: var(--btn_color);
-	border-color: var(--btn_color);
-}
-.pa:hover {
+.ca:hover, .pa:hover {
 	color: var(--btn_hover_color);
 	border-color: var(--btn_hover_color);
 }
 /*Page info button*/
 .ib {
-	margin-right: 1rem;
-	font-size: 1rem;
-	color: var(--btn_color);
-	border: 1px solid transparent;
+	border: none;
 }
 .ib:hover {
 	color: var(--btn_hover_color);
-	border: 1px solid var(--btn_hover_color);
 }
 .ib.open + .pi{
 	display: inline;
 }
-/*Juz anchor button*/
-.ca {
-	color: var(--btn_color);
-	border-color: var(--btn_color);
-}
-.ca:hover {
-	color: var(--btn_hover_color);
-	border-color: var(--btn_hover_color);
-}
-.rb {
-	font-size: 1.2rem;
+/*Page info*/
+.pi {
+	display: none;
+	transition: width .5s;
 }
 .overlay {
 	display: none;
@@ -333,20 +290,25 @@ i {
 .ul.icons li {
 	margin-bottom: .8rem;
 }
-.footer {
-	height: 3rem;
+footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
-	margin-top: 2rem;
-	padding: .5rem 1rem;
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 5px;
 	background-color: gray;
 	color: white;
 	font-family: sans-serif;
 	text-align: center;
 }
-.footer a {
-	font-size: 1rem;
+footer a {
 	text-decoration: none;
 	color: white;
+}
+.logo {
+	margin-right: 1rem;
 }
 @media print {
 	.container {
