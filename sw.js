@@ -1,4 +1,4 @@
-var cacheName = 'quran-v1.1';
+var cacheName = 'quran-v1.2';
 var staticContentToCache = [
 	'/',
 	'/index.html',
