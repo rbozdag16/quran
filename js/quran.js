@@ -11,9 +11,7 @@ window.onload = ()=>{
 	let juzAnchors        = document.querySelectorAll('.ca');
 	let juzList           = document.getElementById('juz-list');
 	let navLeft           = document.getElementById('nav-left');
-	let navLeftDrag       = document.getElementById('nav-left-drag');
 	let navRight          = document.getElementById('nav-right');
-	let navRightDrag      = document.getElementById('nav-right-drag');
 	let navTop            = document.getElementById('nav-top');
 	let openNavLeftBtn    = document.getElementById('open-nav-left');
 	let openNavRightBtn   = document.getElementById('open-nav-right');
@@ -125,15 +123,13 @@ window.onload = ()=>{
 		// Nav left
 		openNavLeftBtn.addEventListener('click', openNavLeft);
 		closeNavLeftBtn.addEventListener('click', closeNavLeft);
-		navLeftDrag.addEventListener('swipeRight', openNavLeft);
-		navLeftDrag.addEventListener('swipeLeft', closeNavLeft);
+		quranVerses.addEventListener('swipeRight', openNavLeft);
 		navLeft.addEventListener('swipeLeft', closeNavLeft);
 
 		// Nav right
 		openNavRightBtn.addEventListener('click', openNavRight);
 		closeNavRightBtn.addEventListener('click', closeNavRight);
-		navRightDrag.addEventListener('swipeRight', closeNavRight);
-		navRightDrag.addEventListener('swipeLeft', openNavRight);
+		quranVerses.addEventListener('swipeLeft', openNavRight);
 		navRight.addEventListener('swipeRight', closeNavRight);
 
 	}
