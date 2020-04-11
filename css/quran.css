@@ -1,0 +1,366 @@
+:root {
+	--abc: #fffde1; /* arabic background color */
+	--ac: black; /* arabic color */
+	--aff: 'Hamdullah'; /* arabic font family */
+	--afs: 28px; /* arabic font size */
+	--asp: 10px; /* arabic side padding */
+	--btn_color: brown; /* button color */
+	--btn_hover_color: brown;
+	--max-width: 768px; /* maximum width for container */
+	--nsbc: brown; /* nav side background color */
+	--ntbc: brown; /* nav top background color */
+	--nth: 42px; /* nav top height */
+	--qpic: brown; /* quran page info color */
+	--sajdah-color: darkviolet;
+	--snbc: brown; /* sura name background color */
+	--verse-color: black;
+	--vnc: brown; /* verse number color */
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html {
+	font-size: 16px;
+	font-family: sans-serif;
+	/*scroll-behavior: smooth;*/
+}
+ul {
+	list-style: none;
+}
+i {
+	font-style: normal;
+	color: var(--verse-color);
+}
+.container {
+	position: relative;
+	width: 100%;
+	max-width: var(--max-width);
+	margin: 0 auto 1rem;
+	padding: 0 5px;
+}
+.arabic {
+	position: relative;
+	top: var(--nth);
+	margin-bottom: 2rem;
+	padding: 5px 0;
+	text-align: justify;
+	font-family: var(--aff);
+	font-size: var(--afs);
+	page-break-inside: avoid;
+	background-color: var(--abc);
+	color: var(--ac);
+	direction: rtl;
+}
+#nav-top {
+	position: fixed;
+	display: flex;
+	justify-content: space-between;
+	left: 0;
+	right: 0;
+	max-height: var(--nth);
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 10px;
+	background-color: var(--ntbc);
+	color: white;
+	border-bottom: 3px solid var(--abc);
+	z-index: 1;
+}
+.nav-top-btn {
+	color: white;
+	cursor: pointer;
+	z-index: 100;
+}
+#anchor-list {
+}
+.font-selector {
+}
+.sura-selector {
+	display: block;
+}
+.sajdah {
+	color: var(--sajdah-color);
+}
+.basmala {
+	font-family: var(--aff);
+	font-size: var(--afs);
+	color: var(--ac);
+}
+#nav-left, #nav-right {
+	position: fixed;
+	top: var(--nth);
+	width: 70%;
+	max-width: 400px;
+	height: 100vh;
+	margin: 0;
+	padding: 1rem;
+	background-color: var(--nsbc);
+	font-size: 1rem;
+	color: white;
+	opacity: 1;
+	z-index: 100;
+	transition: .5s;
+}
+#nav-left {
+	left: -70%;
+}
+#nav-right {
+	right: -70%;
+}
+#nav-left.open {
+	left: 0;
+}
+#nav-right.open {
+	right: 0;
+}
+#close-nav-left,
+#close-nav-right {
+	cursor: pointer;
+	color: white;
+}
+#close-nav-left:hover,
+#close-nav-right:hover {
+	color: #ddd;
+}
+.close-btn-p {
+	font-size: 1.6rem;
+	margin-bottom: 1rem;
+}
+.text-right {
+	text-align: right;
+}
+.text-center {
+	text-align: center;
+}
+.settings {
+	display: grid;
+	grid-template-columns: 40% 60%;
+	grid-gap: 5px;
+	align-items: center;
+}
+.settings dt {
+	text-align: right;
+}
+.settings dd {
+}
+.settings input,
+.settings select {
+	width: 100%;
+	height: 2rem;
+	border-image: none;
+	font-size: 1rem;
+}
+#nav-left-drag,
+#nav-right-drag {
+	position: fixed;
+	top: var(--nth);
+	width: var(--asp);
+	height: 100%;
+	z-index: 99;
+}
+#nav-left-drag {
+	left: 0;
+}
+#nav-right-drag {
+	right: 0;
+}
+.hidden {
+	visibility: hidden;
+}
+.visible {
+	visibility: visible;
+}
+.btn {
+	padding: 2px;
+	background-color: transparent;
+	border: 1px solid transparent;
+	border-radius: .25rem;
+	color: white;
+	font-size: 1rem;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	user-select: none;
+	outline: none;
+}
+.btn:active {
+	background-image: none;
+}
+/*Page bookmark*/
+#bookmark {
+	padding: 2px 4px;
+	color: white;
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	border-radius: 4px;
+	cursor: pointer;
+}
+#bookmark:hover {
+	color: var(--btn_hover_color);
+	border-color: var(--ntbc);
+	background-color: white;
+}
+#bookmark-icon {
+	margin-right: 1rem;
+	cursor: pointer;
+}
+/*Sura names*/
+.sn {
+	padding: 1rem;
+	background-color: var(--snbc);
+	border-top: var(--nth) solid var(--abc);
+	font-family: sans-serif;
+	font-size: 18px;
+	text-align: center;
+	color: #eee;
+	page-break-inside: avoid;
+	direction: ltr;
+}
+#sura_1 {
+	border-top: none;
+}
+/*Verse numbers*/
+.vn {
+	font-family: 'rb-quran', sans-serif;
+	font-size: .5em;
+	color: var(--vnc);
+}
+/*Juz info paragraph*/
+.jip {
+	margin: 0;
+	padding: 10px;
+	text-align: center;
+	font-family: sans-serif;
+	border-top: var(--nth) solid var(--abc);
+}
+.jip:first-child {
+	border-top: none;
+}
+/*Page info paragraph*/
+.pip {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-start;
+	margin-bottom: 1rem;
+	padding-top: var(--nth);
+	font-family: sans-serif;
+	direction: ltr;
+}
+#p0 {
+	padding-top: 0;
+}
+/*Page info*/
+.pi {
+	display: none;
+	font-family: sans-serif;
+	font-size: 1rem;
+	text-decoration: none;
+	color: var(--btn_color);
+	/*background-color: #fffde1;*/
+	transition: width .5s;
+}
+.pi .rb {
+	color: var(--btn_color);
+}
+/*Page anchor button*/
+.pa {
+	color: var(--btn_color);
+	border-color: var(--btn_color);
+}
+.pa:hover {
+	color: var(--btn_hover_color);
+	border-color: var(--btn_hover_color);
+}
+/*Page info button*/
+.ib {
+	margin-right: 1rem;
+	font-size: 1rem;
+	color: var(--btn_color);
+	border: 1px solid transparent;
+}
+.ib:hover {
+	color: var(--btn_hover_color);
+	border: 1px solid var(--btn_hover_color);
+}
+.ib.open + .pi{
+	display: inline;
+}
+/*Juz anchor button*/
+.ca {
+	color: var(--btn_color);
+	border-color: var(--btn_color);
+}
+.ca:hover {
+	color: var(--btn_hover_color);
+	border-color: var(--btn_hover_color);
+}
+.rb {
+	font-size: 1.2rem;
+}
+.overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, .7);
+	opacity: 0;
+}
+.overlay.open {
+	display: block;
+	opacity: 1;
+}
+.popup {
+	position: relative;
+	width: 80%;
+	max-width: 600px;
+	margin: 60px auto;
+	padding: 10px;
+	background-color: white;
+	border-radius: 5px;
+}
+#close-popup-btn {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	cursor: pointer;
+	color: var(--btn_color);
+}
+#close-popup-btn:hover {
+	color: var(--btn_hover_color);
+}
+.popup-content {
+	max-height: 70vh;
+	overflow-y: auto;
+}
+.popup h3, .popup h4 {
+	margin-bottom: 1em;
+	color: var(--ntbc);
+}
+.popup p {
+	margin-bottom: 1rem;
+}
+.ul {
+	margin: 1rem 0;
+	padding-left: 2rem;
+	list-style-type: disc;
+	color: var(--ntbc);
+}
+.ul.icons li {
+	margin-bottom: .8rem;
+}
+@media print {
+	.container {
+		display: block;
+		border: none;
+	}
+	.arabic {
+		margin-bottom: 1rem;
+	}
+	.pip {
+		break-before: page;
+	}
+}
