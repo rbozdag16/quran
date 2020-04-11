@@ -113,7 +113,7 @@ window.onload = ()=>{
 		juzList.addEventListener('change', juzToTop);
 
 		// Page no input
-		// pageNo.addEventListener('change', pageToTop);
+		pageNo.addEventListener('keyup', function(e){if (e.keyCode == 13) pageToTop()});
 		gotoPage.addEventListener('click', pageToTop);
 
 		// To quran top
@@ -182,10 +182,14 @@ window.onload = ()=>{
 
 	function removeBookmark()
 	{
-		bookmark = document.getElementById('bookmark')
-		if(bookmark) bookmark.remove();
-		localStorage.removeItem('bookmarkTarget');
-		localStorage.removeItem('bookmarkLabel');
+		let answer = confirm("Do you really want to delete bookmark?");
+		if (answer)
+		{
+			bookmark = document.getElementById('bookmark')
+			if(bookmark) bookmark.remove();
+			localStorage.removeItem('bookmarkTarget');
+			localStorage.removeItem('bookmarkLabel');
+		}
 	}
 
 	function setColors(color)
