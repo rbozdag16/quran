@@ -22,6 +22,7 @@
 	box-sizing: border-box;
 }
 html {
+	padding-bottom: 3rem;
 	font-size: 16px;
 	font-family: sans-serif;
 	/*scroll-behavior: smooth;*/
@@ -273,6 +274,9 @@ i {
 	background: rgba(0, 0, 0, .7);
 	opacity: 0;
 }
+#close-popup-btn {
+	color: gray;
+}
 #close-popup-btn:hover {
 	color: var(--btn_hover_color);
 }
@@ -285,7 +289,7 @@ i {
 	width: 80%;
 	max-width: 600px;
 	margin: 60px auto;
-	padding: 10px;
+	padding: 1rem;
 	background-color: white;
 	border-radius: var(--brs);
 }
@@ -316,7 +320,7 @@ footer {
 	width: 100%;
 	max-width: var(--max-width);
 	margin: 0 auto;
-	padding: 5px;
+	padding: 30px 5px;
 	background-color: gray;
 	color: white;
 	font-family: sans-serif;
@@ -327,7 +331,12 @@ footer a {
 	color: white;
 }
 .logo {
-	margin-right: 1rem;
+	padding: 5px;
+	background-color: teal;
+	color: white;
+	border-radius: 50%;
+	font-size: 1rem;
+	vertical-align: middle;
 }
 @media print {
 	.container {
