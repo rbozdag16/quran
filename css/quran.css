@@ -273,6 +273,9 @@ i {
 	background: rgba(0, 0, 0, .7);
 	opacity: 0;
 }
+#close-popup-btn:hover {
+	color: var(--btn_hover_color);
+}
 .overlay.open {
 	display: block;
 	opacity: 1;
