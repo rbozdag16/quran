@@ -1,20 +1,13 @@
 :root {
-	--abc: #fffde1; /* arabic background color */
-	--ac: black; /* arabic color */
-	--aff: 'Hamdullah'; /* arabic font family */
-	--afs: 28px; /* arabic font size */
-	--btn_color: brown; /* button color */
-	--btn_hover_color: brown;
-	--max-width: 768px; /* maximum width for container */
-	--nsbc: brown; /* nav side background color */
-	--ntbc: brown; /* nav top background color */
-	--nth: 42px; /* nav top height */
-	--qpic: brown; /* quran page info color */
-	--sajdah-color: darkviolet;
-	--snbc: brown; /* sura name background color */
-	--verse-color: black;
-	--vnc: brown; /* verse number color */
+	--ac: black; /* arabic text color */
 	--brs: 5px; /* border radius */
+	--max-width: 768px; /* maximum width for container */
+	--nsbc: gray; /* nav side background color */
+	--nth: 42px; /* nav top height */
+	--set-bg-color: cornsilk; /* arabic background color */
+	--set-color: brown; /* color to change in settings */ /* SET IN JS */
+	--set-font-family: 'Hamdullah'; /* arabic font family */ /* SET IN JS */
+	--set-font-size: 28px; /* arabic font size */ /* SET IN JS */
 }
 * {
 	margin: 0;
@@ -22,7 +15,6 @@
 	box-sizing: border-box;
 }
 html {
-	padding-bottom: 3rem;
 	font-size: 16px;
 	font-family: sans-serif;
 	/*scroll-behavior: smooth;*/
@@ -56,12 +48,13 @@ i {
 }
 .arabic {
 	text-align: justify;
-	font-family: var(--aff);
-	font-size: var(--afs);
+	font-family: var(--set-font-family);
+	font-size: var(--set-font-size);
 	page-break-inside: avoid;
-	background-color: var(--abc);
+	background-color: var(--set-bg-color);
 	color: var(--ac);
 	direction: rtl;
+	padding: var(--nth) 0;
 }
 #nav-top {
 	position: fixed;
@@ -74,9 +67,9 @@ i {
 	max-width: var(--max-width);
 	margin: 0 auto;
 	padding: 10px;
-	background-color: var(--ntbc);
+	background-color: var(--set-color);
 	color: white;
-	border-bottom: 3px solid var(--abc);
+	border-bottom: 3px solid var(--set-bg-color);
 	z-index: 1;
 }
 .nav-top-btn {
@@ -85,11 +78,11 @@ i {
 	z-index: 100;
 }
 .sajdah {
-	color: var(--sajdah-color);
+	color: var(--set-color);
 }
 .basmala {
-	font-family: var(--aff);
-	font-size: var(--afs);
+	font-family: var(--set-font-family);
+	font-size: var(--set-font-size);
 	color: var(--ac);
 }
 #nav-left, #nav-right {
@@ -100,7 +93,7 @@ i {
 	height: 100vh;
 	margin: 0;
 	padding: 3rem 1rem;
-	background-color: gray;
+	background-color: var(--nsbc);
 	font-size: 1rem;
 	color: white;
 	opacity: 1;
@@ -159,7 +152,7 @@ i {
 	height: 2rem;
 	padding: 5px;
 	border-image: none;
-	border-radius: 5px;
+	border-radius: var(--brs);
 	font-size: 1rem;
 	outline: none;
 }
@@ -179,7 +172,7 @@ i {
 	outline: none;
 }
 .btn-nav:hover {
-	color: var(--btn_hover_color);
+	color: var(--set-color);
 	background-color: white;
 }
 .hidden {
@@ -200,7 +193,7 @@ i {
 	cursor: pointer;
 }
 #bookmark:hover {
-	color: var(--btn_hover_color);
+	color: var(--set-color);
 	background-color: white;
 }
 #bookmark-icon {
@@ -213,7 +206,7 @@ i {
 	font-family: sans-serif;
 	font-size: 18px;
 	text-align: center;
-	color: var(--btn_color);
+	color: var(--set-color);
 	page-break-inside: avoid;
 	direction: ltr;
 	margin-top: 1rem;
@@ -222,7 +215,7 @@ i {
 .vn {
 	font-family: 'rb-quran', sans-serif;
 	font-size: .5em;
-	color: var(--vnc);
+	color: var(--set-color);
 }
 /*Page info paragraph*/
 .pip {
@@ -246,15 +239,15 @@ i {
 	outline: none;
 }
 .ca:hover, .pa:hover {
-	color: var(--btn_hover_color);
-	border-color: var(--btn_hover_color);
+	color: var(--set-color);
+	border-color: var(--set-color);
 }
 /*Page info button*/
 .ib {
 	border: none;
 }
 .ib:hover {
-	color: var(--btn_hover_color);
+	color: var(--set-color);
 }
 .ib.open + .pi{
 	display: inline;
@@ -278,7 +271,7 @@ i {
 	color: gray;
 }
 #close-popup-btn:hover {
-	color: var(--btn_hover_color);
+	color: var(--set-color);
 }
 .overlay.open {
 	display: block;
@@ -299,7 +292,7 @@ i {
 }
 .popup h3, .popup h4 {
 	margin-bottom: 1em;
-	color: var(--ntbc);
+	color: var(--set-color);
 }
 .popup p {
 	margin-bottom: 1rem;
@@ -308,7 +301,7 @@ i {
 	margin: 1rem 0;
 	padding-left: 2rem;
 	list-style-type: disc;
-	color: var(--ntbc);
+	color: var(--set-color);
 }
 .ul.icons li {
 	margin-bottom: .8rem;
@@ -321,7 +314,7 @@ footer {
 	max-width: var(--max-width);
 	margin: 0 auto;
 	padding: 30px 5px;
-	background-color: gray;
+	background-color: var(--nsbc);
 	color: white;
 	font-family: sans-serif;
 	text-align: center;
@@ -332,7 +325,7 @@ footer a {
 }
 .logo {
 	padding: 5px;
-	background-color: teal;
+	background-color: var(--set-color);
 	color: white;
 	border-radius: 50%;
 	font-size: 1rem;
