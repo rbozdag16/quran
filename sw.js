@@ -1,4 +1,4 @@
-var cacheName = 'quran-v1.3';
+var cacheName = 'quran-v1.4';
 var staticContentToCache = [
 	'/',
 	'/index.html',
@@ -25,6 +25,7 @@ var staticContentToCache = [
 	'/app.js',
 	'/js/swipe.js',
 	'/js/lang.js',
+	'/js/settings.js',
 	'/js/quran.js',
 ];
 
