@@ -1,36 +1,151 @@
 window.onload = ()=>{
 	// Define elements
-	let bookmarkContainer = document.getElementById('bookmark-container');
-	let bookmarkIcon      = document.getElementById('bookmark-icon');
-	let closeNavLeftBtn   = document.getElementById('close-nav-left');
-	let closeNavRightBtn  = document.getElementById('close-nav-right');
-	let closePopupBtn     = document.getElementById('close-popup-btn');
-	let colorList         = document.getElementById('color-list');
-	let fontFamilyList    = document.getElementById('font-family-list');
-	let fontSizeList      = document.getElementById('font-size-list');
-	let juzAnchors        = document.querySelectorAll('.ca');
-	let juzList           = document.getElementById('juz-list');
-	let gotoPage          = document.getElementById('goto-page');
-	let navLeft           = document.getElementById('nav-left');
-	let navRight          = document.getElementById('nav-right');
-	let navTop            = document.getElementById('nav-top');
-	let openNavLeftBtn    = document.getElementById('open-nav-left');
-	let openNavRightBtn   = document.getElementById('open-nav-right');
-	let pageAnchors       = document.querySelectorAll('.pa');
-	let pageInfos         = document.querySelectorAll('.ib');
-	let pageNo            = document.getElementById('page-no');
-	let programInfoBtn    = document.getElementById('program-info-btn');
-	let programInfoPopup  = document.getElementById('program-info-popup');
-	let quranVerses       = document.getElementById('quran-verses');
-	let suraList          = document.getElementById('sura-list');
-	let topBtn            = document.getElementById('top-btn');
-	let resetBtn          = document.getElementById('reset-btn');
+	let bgColorList         = document.getElementById('bg_color_list');
+	let bookmarkContainer   = document.getElementById('bookmark-container');
+	let bookmarkIcon        = document.getElementById('bookmark-icon');
+	let bottomBtn           = document.getElementById('bottom-btn');
+	let closeNavLeftBtn     = document.getElementById('close-nav-left');
+	let closeNavRightBtn    = document.getElementById('close-nav-right');
+	let closePopupBtn       = document.getElementById('close-popup-btn');
+	let colorList           = document.getElementById('color_list');
+	let fontFamilyList      = document.getElementById('font_family_list');
+	let fontSizeList        = document.getElementById('font_size_list');
+	let gotoPageBtn         = document.getElementById('goto_page_btn');
+	let juzList             = document.getElementById('juz-list');
+	let languageList        = document.getElementById('language_list');
+	let navLeft             = document.getElementById('nav-left');
+	let navRight            = document.getElementById('nav-right');
+	let navTop              = document.getElementById('nav-top');
+	let openNavLeftBtn      = document.getElementById('open-nav-left');
+	let openNavRightBtn     = document.getElementById('open-nav-right');
+	let pageNo              = document.getElementById('page-no');
+	let programInfoBtn      = document.getElementById('program-info-btn');
+	let programInfoPopup    = document.getElementById('program-info-popup');
+	let quranVerses         = document.getElementById('quran-verses');
+	let resetBtn            = document.getElementById('reset_btn');
+	let suraList            = document.getElementById('sura-list');
+	let topBtn              = document.getElementById('top-btn');
 
-	// First install event listeners for quick responsiveness then settings if exist
+	// Anchors and infos in quran
+	let juzAnchors          = document.querySelectorAll('.ca');
+	let pageAnchors         = document.querySelectorAll('.pa');
+	let pageInfos           = document.querySelectorAll('.ib');
+
+	// Labels
+	let bgColorListLabel    = document.getElementById('bg_color_list_label');
+	let colorListLabel      = document.getElementById('color_list_label');
+	let fontFamilyListLabel = document.getElementById('font_family_list_label');
+	let fontSizeListLabel   = document.getElementById('font_size_list_label');
+	let juzListLabel        = document.getElementById('juz_list_label');
+	let languageListLabel   = document.getElementById('language_list_label');
+	let pageInputLabel      = document.getElementById('page_input_label');
+	let suraListLabel       = document.getElementById('sura_list_label');
+
+
+	// Set current language first
+	if( typeof currentLanguage === 'undefined')
+	{
+		var currentLanguage = defaultLanguage;
+	}
+	// else
+	// {
+	// 	var currentLanguage = defaultLanguage;
+	// }
+
+	setLabels(currentLanguage);
+	fillSelects();
+
+	// Than install event listeners for quick responsiveness then settings if exist
 	installEventListeners();
-	installSettings();
+	// restoreSettings();
 
-	function installSettings()
+	function installEventListeners()
+	{
+		// Language list
+		languageList.addEventListener('change', (e)=>{
+			setLanguage(languageList.value);
+		});
+
+		// Page infos
+		for(let i = 0; i < pageInfos.length; i++)
+		{
+			pageInfos[i].addEventListener('click', ()=>{pageInfos[i].classList.toggle('open')});
+		}
+
+		// Juz anchors
+		for(let i=0; i < juzAnchors.length; i++)
+		{
+			juzAnchors[i].addEventListener('click', addBookmark, false);
+		}
+
+		// Page anchors
+		for(let i=0; i < pageAnchors.length; i++)
+		{
+			pageAnchors[i].addEventListener('click', addBookmark, false);
+		}
+
+		// Font family List
+		fontFamilyList.addEventListener('change', ()=>{
+			setFontFamily(fontFamilyList.value);
+		});
+
+		// Font size list
+		fontSizeList.addEventListener('change', (e)=>{
+			setFontSize(fontSizeList.value);
+		});
+
+		// Color list
+		colorList.addEventListener('change', (e)=>{
+			setColor(colorList.value);
+		});
+
+		// Background color list
+		bgColorList.addEventListener('change', (e)=>{
+			setBgColor(bgColorList.value);
+		});
+
+		// Reset settings button
+		resetBtn.addEventListener('click', (e)=>{
+			resetSettings();
+		});
+
+		// Sura List
+		suraList.addEventListener('change', suraToTop);
+
+		// Juz list
+		juzList.addEventListener('change', juzToTop);
+
+		// Page no input
+		pageNo.addEventListener('keyup', function(e){if (e.keyCode == 13) pageToTop()});
+		gotoPageBtn.addEventListener('click', pageToTop);
+
+		// To quran top
+		topBtn.addEventListener('click', quranToTop);
+
+		// To quran bottom
+		bottomBtn.addEventListener('click', quranToBottom);
+
+		// Clean bookmark
+		bookmarkIcon.addEventListener('click', removeBookmark);
+
+		// Program info
+		programInfoBtn.addEventListener('click', openInfoPopup);
+		closePopupBtn.addEventListener('click', closeInfoPopup);
+
+		// Nav left
+		openNavLeftBtn.addEventListener('click', openNavLeft);
+		closeNavLeftBtn.addEventListener('click', closeNavLeft);
+		quranVerses.addEventListener('swipeRight', openNavLeft);
+		navLeft.addEventListener('swipeLeft', closeNavLeft);
+
+		// Nav right
+		openNavRightBtn.addEventListener('click', openNavRight);
+		closeNavRightBtn.addEventListener('click', closeNavRight);
+		quranVerses.addEventListener('swipeLeft', openNavRight);
+		navRight.addEventListener('swipeRight', closeNavRight);
+	}
+
+	function restoreSettings()
 	{
 		// Set bookmark
 		if (localStorage.getItem('bookmarkTarget'))
@@ -39,6 +154,13 @@ window.onload = ()=>{
 			bookmarkLabel  = localStorage.getItem('bookmarkLabel');
 			setBookmark(bookmarkTarget, bookmarkLabel);
 			gotoBookmark(bookmarkTarget);
+		}
+
+		if (localStorage.getItem('language'))
+		{
+			language = localStorage.getItem('language');
+			languageList.value = language;
+			setLanguage(language);
 		}
 
 		// Set font family
@@ -57,103 +179,90 @@ window.onload = ()=>{
 			setFontSize(fontSize);
 		}
 
-		// Set colors
-		if (localStorage.getItem('settingsColor'))
+		// Set color
+		if (localStorage.getItem('color'))
 		{
-			settingsColor   = localStorage.getItem('settingsColor');
-			colorList.value = settingsColor;
-			setColors(settingsColor);
+			color = localStorage.getItem('color');
+			colorList.value = color;
+			setColor(color);
+		}
+
+		// Set background color
+		if (localStorage.getItem('bgColor'))
+		{
+			bgColor = localStorage.getItem('bgColor');
+			bgColorList.value = bgColor;
+			setBgColor(bgColor);
 		}
 	}
 
-	function installEventListeners()
+	function setLanguage(language)
 	{
-		// Page infos
-		for(let i = 0; i < pageInfos.length; i++)
-		{
-			pageInfos[i].addEventListener('click', ()=>{pageInfos[i].classList.toggle('open')});
-		}
-
-		// Juz anchors
-		for(let i=0; i < juzAnchors.length; i++)
-		{
-			juzAnchors[i].addEventListener('click', addJuzAnchor, false);
-		}
-
-		// Page anchors
-		for(let i=0; i < pageAnchors.length; i++)
-		{
-			pageAnchors[i].addEventListener('click', addAnchor, false);
-		}
-
-		// Font family List
-		fontFamilyList.addEventListener('change', ()=>{
-			setFontFamily(fontFamilyList.value);
-		});
-
-		// Font size list
-		fontSizeList.addEventListener('change', (e)=>{
-			setFontSize(fontSizeList.value);
-		});
-
-		// Color list
-		colorList.addEventListener('change', (e)=>{
-			setColors(colorList.value);
-		});
-
-		// Reset settings button
-		resetBtn.addEventListener('click', (e)=>{
-			resetSettings();
-		});
-
-		// Sura List
-		suraList.addEventListener('change', suraToTop);
-
-		// Juz list
-		juzList.addEventListener('change', juzToTop);
-
-		// Page no input
-		pageNo.addEventListener('keyup', function(e){if (e.keyCode == 13) pageToTop()});
-		gotoPage.addEventListener('click', pageToTop);
-
-		// To quran top
-		topBtn.addEventListener('click', quranToTop);
-
-		// Clean bookmark
-		bookmarkIcon.addEventListener('click', removeBookmark);
-
-		// Program info
-		programInfoBtn.addEventListener('click', openInfoPopup);
-
-		closePopupBtn.addEventListener('click', closeInfoPopup);
-
-		// Nav left
-		openNavLeftBtn.addEventListener('click', openNavLeft);
-		closeNavLeftBtn.addEventListener('click', closeNavLeft);
-		quranVerses.addEventListener('swipeRight', openNavLeft);
-		navLeft.addEventListener('swipeLeft', closeNavLeft);
-
-		// Nav right
-		openNavRightBtn.addEventListener('click', openNavRight);
-		closeNavRightBtn.addEventListener('click', closeNavRight);
-		quranVerses.addEventListener('swipeLeft', openNavRight);
-		navRight.addEventListener('swipeRight', closeNavRight);
-
+		setLabels(language);
+		replaceBookmarksAndInfos(language);
+		localStorage.setItem('language', language);
+		currentLanguage = language;
+		closeNavs();
 	}
 
-	function addJuzAnchor()
+	function replaceBookmarksAndInfos(language)
 	{
-		bookmarkTarget = this.dataset.cah;
-		bookmarkLabel  = this.dataset.cbl;
-		setBookmark(bookmarkTarget, bookmarkLabel);
-		localStorage.setItem('bookmarkTarget', bookmarkTarget);
-		localStorage.setItem('bookmarkLabel', bookmarkLabel);
+		for (var i = 0; i < juzAnchors.length; i++) {
+			juzAnchors[i].textContent = juzAnchors[i].textContent.replace(translations[currentLanguage]['juz_anchor_label'], translations[language]['juz_anchor_label']);
+		}
+
+		for (var i = 0; i < pageAnchors.length; i++) {
+			pageAnchors[i].textContent = pageAnchors[i].textContent.replace(translations[currentLanguage]['page_anchor_label'], translations[language]['page_anchor_label']);
+		}
+
+		let bookmark = document.getElementById('bookmark');
+		if (bookmark)
+		{
+			bookmark.textContent = bookmark.textContent.replace(translations[currentLanguage]['juz_anchor_label'], translations[language]['juz_anchor_label']);
+			bookmark.textContent = bookmark.textContent.replace(translations[currentLanguage]['page_anchor_label'], translations[language]['page_anchor_label']);
+		}
 	}
 
-	function addAnchor()
+	function setLabels(language)
 	{
-		bookmarkTarget = this.dataset.pah;
-		bookmarkLabel  = this.dataset.pbl;
+		suraListLabel.textContent       = translations[language][suraListLabel.id];
+		juzListLabel.textContent        = translations[language][juzListLabel.id];
+		pageInputLabel.textContent      = translations[language][pageInputLabel.id];
+		fontFamilyListLabel.textContent = translations[language][fontFamilyListLabel.id];
+		fontSizeListLabel.textContent   = translations[language][fontSizeListLabel.id];
+		colorListLabel.textContent      = translations[language][colorListLabel.id];
+		bgColorListLabel.textContent    = translations[language][bgColorListLabel.id];
+		languageListLabel.textContent   = translations[language][languageListLabel.id];
+		gotoPageBtn.textContent         = translations[language][gotoPageBtn.id];
+		resetBtn.textContent            = translations[language][resetBtn.id];
+	}
+
+	function fillSelects()
+	{
+		createOptions(fontFamilyList, fontFamilies, defaultFontFamily);
+		createOptions(fontSizeList, fontSizes, defaultFontSize);
+		createOptions(colorList, colors, defaultColor);
+		createOptions(bgColorList, bgColors, defaultBgColor);
+		createOptions(languageList, languages, defaultLanguage);
+		createOptions(juzList, ajza, null);
+	}
+
+	function createOptions(selectElement, options, defaultOption)
+	{
+		for ([value, text] of Object.entries(options))
+		{
+			option = document.createElement('option');
+			option.value = value;
+			option.textContent = text;
+			selectElement.appendChild(option);
+			if (defaultOption == value) selectElement.value = value;
+		}
+	}
+
+	function addBookmark()
+	{
+		bookmarkTarget = this.id;
+		bookmarkLabel  = this.textContent;
 		setBookmark(bookmarkTarget, bookmarkLabel);
 		localStorage.setItem('bookmarkTarget', bookmarkTarget);
 		localStorage.setItem('bookmarkLabel', bookmarkLabel);
@@ -182,7 +291,7 @@ window.onload = ()=>{
 
 	function removeBookmark()
 	{
-		let answer = confirm("Do you really want to delete bookmark?");
+		let answer = confirm(translations[currentLanguage]['confirm_delete_bookmark']);
 		if (answer)
 		{
 			bookmark = document.getElementById('bookmark')
@@ -192,39 +301,49 @@ window.onload = ()=>{
 		}
 	}
 
-	function setColors(color)
+	function setColor(color)
 	{
-		document.documentElement.style.setProperty('--ntbc', color);
-		document.documentElement.style.setProperty('--nsbc', color);
-		document.documentElement.style.setProperty('--vnc', color);
-		document.documentElement.style.setProperty('--snbc', color);
-		document.documentElement.style.setProperty('--btn_hover_color', color);
-		localStorage.setItem('settingsColor', color);
+		document.documentElement.style.setProperty('--set-color', color);
+		localStorage.setItem('color', color);
+		closeNavs();
+	}
+
+	function setBgColor(bgColor)
+	{
+		document.documentElement.style.setProperty('--set-bg-color', bgColor);
+		localStorage.setItem('bgColor', bgColor);
 		closeNavs();
 	}
 
 	function setFontSize(fontSize)
 	{
-		document.documentElement.style.setProperty('--afs', fontSize);
+		document.documentElement.style.setProperty('--set-font-size', fontSize);
 		localStorage.setItem('fontSize', fontSize);
 		closeNavs();
 	}
 
 	function setFontFamily(fontFamily)
 	{
-		document.documentElement.style.setProperty('--aff', fontFamily);
+		document.documentElement.style.setProperty('--set-font-family', fontFamily);
 		localStorage.setItem('fontFamily', fontFamily);
 		closeNavs();
 	}
 
 	function resetSettings()
 	{
-		fontFamilyList.value = 'Hamdullah';
-		fontSizeList.value   = '28px';
-		colorList.value      = 'brown';
+		// Reset selection list values
+		fontFamilyList.value = defaultFontFamily;
+		fontSizeList.value   = defaultFontSize;
+		colorList.value      = defaultColor;
+		bgColorList.value    = defaultBgColor;
+		languageList.value   = defaultLanguage;
+
+		// Propagate reset settings
 		fontFamilyList.dispatchEvent(new Event('change', {'bubbles': true}));
 		fontSizeList.dispatchEvent(new Event('change', {'bubbles': true}));
 		colorList.dispatchEvent(new Event('change', {'bubbles': true}));
+		bgColorList.dispatchEvent(new Event('change', {'bubbles': true}));
+		languageList.dispatchEvent(new Event('change', {'bubbles': true}));
 	}
 
 	function closeNavs()
@@ -273,7 +392,13 @@ window.onload = ()=>{
 	function quranToTop()
 	{
 		closeNavs();
-		document.getElementById('quran-top').scrollIntoView();
+		document.getElementById('quran-container').scrollIntoView();
+	}
+
+	function quranToBottom()
+	{
+		closeNavs();
+		document.getElementById('quran-container').scrollIntoView({block:'end'});
 	}
 
 	function suraToTop()
