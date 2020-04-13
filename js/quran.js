@@ -29,7 +29,8 @@ window.onload = ()=>{
 	// Anchors and infos in quran
 	let juzAnchors          = document.querySelectorAll('.ca');
 	let pageAnchors         = document.querySelectorAll('.pa');
-	let pageInfos           = document.querySelectorAll('.ib');
+	let pageInfoBtns        = document.querySelectorAll('.ib');
+	let pageInfos           = document.querySelectorAll('.pi');
 
 	// Labels
 	let bgColorListLabel    = document.getElementById('bg_color_list_label');
@@ -47,10 +48,6 @@ window.onload = ()=>{
 	{
 		var currentLanguage = defaultLanguage;
 	}
-	// else
-	// {
-	// 	var currentLanguage = defaultLanguage;
-	// }
 
 	setLabels(currentLanguage);
 	fillSelects();
@@ -67,9 +64,9 @@ window.onload = ()=>{
 		});
 
 		// Page infos
-		for(let i = 0; i < pageInfos.length; i++)
+		for(let i = 0; i < pageInfoBtns.length; i++)
 		{
-			pageInfos[i].addEventListener('click', ()=>{pageInfos[i].classList.toggle('open')});
+			pageInfoBtns[i].addEventListener('click', ()=>{pageInfoBtns[i].classList.toggle('open')});
 		}
 
 		// Juz anchors
@@ -200,8 +197,8 @@ window.onload = ()=>{
 	{
 		setLabels(language);
 		replaceBookmarksAndInfos(language);
-		localStorage.setItem('language', language);
 		currentLanguage = language;
+		localStorage.setItem('language', language);
 		closeNavs();
 	}
 
@@ -213,6 +210,11 @@ window.onload = ()=>{
 
 		for (var i = 0; i < pageAnchors.length; i++) {
 			pageAnchors[i].textContent = pageAnchors[i].textContent.replace(translations[currentLanguage]['page_anchor_label'], translations[language]['page_anchor_label']);
+		}
+
+		for (var i = 0; i < pageInfos.length; i++) {
+			pageInfos[i].textContent = pageInfos[i].textContent.replace(translations[currentLanguage]['page_info_page'], translations[language]['page_info_page']);
+			pageInfos[i].textContent = pageInfos[i].textContent.replace(translations[currentLanguage]['page_info_juz'], translations[language]['page_info_juz']);
 		}
 
 		let bookmark = document.getElementById('bookmark');

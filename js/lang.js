@@ -13,6 +13,9 @@ translations = {
 	'reset_btn'              : 'Reset',
 	'sura_list_label'        : 'Sûre',
 	'confirm_delete_bookmark': 'Yer işaretini silmek istiyor musunuz?',
+	'page_info_page'         : 'syf',
+	'page_info_juz'          : 'cz',
+	'page_info_hizb'         : 'hzb',
 	},
 
 	en: {
@@ -29,5 +32,8 @@ translations = {
 	'reset_btn'              : 'Reset',
 	'sura_list_label'        : 'Surah',
 	'confirm_delete_bookmark': 'Do you really want to delete bookmark?',
+	'page_info_page'         : 'pg',
+	'page_info_juz'          : 'jz',
+	'page_info_hizb'         : 'hzb',
 	}
 };
