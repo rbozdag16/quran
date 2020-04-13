@@ -291,13 +291,17 @@ window.onload = ()=>{
 
 	function removeBookmark()
 	{
-		let answer = confirm(translations[currentLanguage]['confirm_delete_bookmark']);
-		if (answer)
+		let bookmark = document.getElementById('bookmark');
+
+		if (bookmark)
 		{
-			bookmark = document.getElementById('bookmark')
-			if(bookmark) bookmark.remove();
-			localStorage.removeItem('bookmarkTarget');
-			localStorage.removeItem('bookmarkLabel');
+			let answer = confirm(translations[currentLanguage]['confirm_delete_bookmark']);
+			if (answer)
+			{
+				bookmark.remove();
+				localStorage.removeItem('bookmarkTarget');
+				localStorage.removeItem('bookmarkLabel');
+			}
 		}
 	}
 
