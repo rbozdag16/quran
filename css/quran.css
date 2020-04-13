@@ -44,7 +44,6 @@ i {
 	width: 100%;
 	max-width: var(--max-width);
 	margin: 0 auto;
-	padding: 0 5px;
 }
 .arabic {
 	text-align: justify;
@@ -54,7 +53,7 @@ i {
 	background-color: var(--set-bg-color);
 	color: var(--ac);
 	direction: rtl;
-	padding: var(--nth) 0;
+	padding: var(--nth) 5px;
 }
 #nav-top {
 	position: fixed;
@@ -78,7 +77,11 @@ i {
 	z-index: 100;
 }
 .sajdah {
-	color: var(--set-color);
+	color: white;
+	background-color: var(--set-color);
+	border-radius: var(--brs);
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 .basmala {
 	font-family: var(--set-font-family);
