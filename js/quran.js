@@ -46,6 +46,23 @@ window.onload = ()=>{
 	// Set current language first
 	if( typeof currentLanguage === 'undefined')
 	{
+		let lang   = navigator.language.split(/[_-]/)[0];
+
+		if (languages.hasOwnProperty(lang))
+		{
+			defaultLanguage = lang;
+		}
+		else
+		{
+			defaultLanguage = 'en';
+		}
+
+		if (defaultLanguage != 'tr')
+		{
+			var currentLanguage = 'tr';
+			replaceBookmarksAndInfos(defaultLanguage);
+		}
+
 		var currentLanguage = defaultLanguage;
 	}
 
