@@ -57,7 +57,7 @@ window.onload = ()=>{
 
 	// Than install event listeners for quick responsiveness then settings if exist
 	installEventListeners();
-	// restoreSettings();
+	restoreSettings();
 
 	function installEventListeners()
 	{
