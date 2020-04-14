@@ -1,4 +1,19 @@
+function loading(load = true)
+{
+	let loadingOverlay = document.getElementById('loading-overlay');
+
+	if(load)
+	{
+		loadingOverlay.style.display = 'block';
+	}
+	else
+	{
+		loadingOverlay.style.display = 'none';
+	}
+}
+
 window.onload = ()=>{
+	loading(false);
 	// Define elements
 	let bgColorList         = document.getElementById('bg_color_list');
 	let bookmarkContainer   = document.getElementById('bookmark-container');
@@ -20,6 +35,7 @@ window.onload = ()=>{
 	let openNavRightBtn     = document.getElementById('open-nav-right');
 	let pageNo              = document.getElementById('page-no');
 	let programInfoBtn      = document.getElementById('program-info-btn');
+	let programInfoContent  = document.getElementById('program-info-content');
 	let programInfoPopup    = document.getElementById('program-info-popup');
 	let quranVerses         = document.getElementById('quran-verses');
 	let resetBtn            = document.getElementById('reset_btn');
@@ -31,6 +47,7 @@ window.onload = ()=>{
 	let pageAnchors         = document.querySelectorAll('.pa');
 	let pageInfoBtns        = document.querySelectorAll('.ib');
 	let pageInfos           = document.querySelectorAll('.pi');
+	let suraShortcuts       = document.querySelectorAll('.sura-shortcut');
 
 	// Labels
 	let bgColorListLabel    = document.getElementById('bg_color_list_label');
@@ -41,6 +58,7 @@ window.onload = ()=>{
 	let languageListLabel   = document.getElementById('language_list_label');
 	let pageInputLabel      = document.getElementById('page_input_label');
 	let suraListLabel       = document.getElementById('sura_list_label');
+	let suraShortcutsLabel  = document.getElementById('sura_shortcuts_label');
 
 
 	// Set current language first
@@ -123,8 +141,14 @@ window.onload = ()=>{
 			resetSettings();
 		});
 
-		// Sura List
+		// Sura list
 		suraList.addEventListener('change', suraToTop);
+
+		// Sura shortcuts
+		for(let i=0; i < suraShortcuts.length; i++)
+		{
+			suraShortcuts[i].addEventListener('click', suraShortcutToTop, false);
+		}
 
 		// Juz list
 		juzList.addEventListener('change', juzToTop);
@@ -245,6 +269,7 @@ window.onload = ()=>{
 	function setLabels(language)
 	{
 		suraListLabel.textContent       = translations[language][suraListLabel.id];
+		suraShortcutsLabel.textContent  = translations[language][suraShortcutsLabel.id];
 		juzListLabel.textContent        = translations[language][juzListLabel.id];
 		pageInputLabel.textContent      = translations[language][pageInputLabel.id];
 		fontFamilyListLabel.textContent = translations[language][fontFamilyListLabel.id];
@@ -254,6 +279,7 @@ window.onload = ()=>{
 		languageListLabel.textContent   = translations[language][languageListLabel.id];
 		gotoPageBtn.textContent         = translations[language][gotoPageBtn.id];
 		resetBtn.textContent            = translations[language][resetBtn.id];
+		programInfoContent.innerHTML    = translations[language]['program_info_content'];
 	}
 
 	function fillSelects()
@@ -326,30 +352,38 @@ window.onload = ()=>{
 
 	function setColor(color)
 	{
+		loading(true);
 		document.documentElement.style.setProperty('--set-color', color);
 		localStorage.setItem('color', color);
 		closeNavs();
+		loading(false);
 	}
 
 	function setBgColor(bgColor)
 	{
+		loading(true);
 		document.documentElement.style.setProperty('--set-bg-color', bgColor);
 		localStorage.setItem('bgColor', bgColor);
 		closeNavs();
+		loading(false);
 	}
 
 	function setFontSize(fontSize)
 	{
+		loading(true);
 		document.documentElement.style.setProperty('--set-font-size', fontSize);
 		localStorage.setItem('fontSize', fontSize);
 		closeNavs();
+		loading(false);
 	}
 
 	function setFontFamily(fontFamily)
 	{
+		loading(true);
 		document.documentElement.style.setProperty('--set-font-family', fontFamily);
 		localStorage.setItem('fontFamily', fontFamily);
 		closeNavs();
+		loading(false);
 	}
 
 	function resetSettings()
@@ -428,6 +462,13 @@ window.onload = ()=>{
 	{
 		closeNavs();
 		document.getElementById('sura_'+suraList.value).scrollIntoView();
+		window.scrollBy(0, -navTop.offsetHeight);
+	}
+
+	function suraShortcutToTop()
+	{
+		closeNavs();
+		document.getElementById('sura_'+this.dataset.suraId).scrollIntoView();
 		window.scrollBy(0, -navTop.offsetHeight);
 	}
 
