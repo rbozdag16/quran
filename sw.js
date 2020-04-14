@@ -1,10 +1,8 @@
-var cacheName = 'quran-v1.4';
+var cacheName = 'quran-v1.5';
 var staticContentToCache = [
 	'/',
 	'/index.html',
 	'/favicon.ico',
-	'/css/fonts.css',
-	'/css/rb_quran.css',
 	'/css/quran.css',
 	'/css/fonts/hamdullah.ttf',
 	'/css/fonts/lateef.ttf',
@@ -22,6 +20,7 @@ var staticContentToCache = [
 	'/css/icons/quran_192x192.png',
 	'/css/icons/quran_384x384.png',
 	'/css/icons/quran_512x512.png',
+	'/css/icons/quran_loading.gif',
 	'/app.js',
 	'/js/swipe.js',
 	'/js/lang.js',
