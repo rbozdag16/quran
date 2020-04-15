@@ -12,7 +12,13 @@
 	<link rel="manifest" href="/quran.json">
 </head>
 <body>
-	<div id="loading-overlay"><img id="quran-heart" src="/css/icons/quran_loading.gif"></div>
+	<div id="loading-overlay">
+		<div id="loading-content">
+			<h3>Easy Quran</h3>
+			<p><img id="loading-image" src="/css/icons/quran_loading.gif"></p>
+			<p>Loading...</p>
+		</div>
+	</div>
 	<nav id="nav-top">
 		<i id="open-nav-left" class="nav-top-btn rb" title="Nav Left">q</i>
 		<i id="program-info-btn" class="nav-top-btn rb" title="Program Info">a</i>
@@ -28,120 +34,120 @@
 			<dd>
 				<select id="sura-list">
 					<option></option>
-					<option value="87">87 - A’lâ الأعـلى</option>
-					<option value="7">7 - A’râf الأعراف</option>
-					<option value="80">80 - Abese عبس</option>
+					<option value="87">087 - A’lâ الأعـلى</option>
+					<option value="7">007 - A’râf الأعراف</option>
+					<option value="80">080 - Abese عبس</option>
 					<option value="100">100 - Âdiyât الـعاديات</option>
-					<option value="46">46 - Ahkaf الأحقاف</option>
-					<option value="33">33 - Ahzâb الأحزاب</option>
-					<option value="3">3 - Âl-i İmrân آل عمران</option>
-					<option value="96">96 - Alak الـعلق</option>
-					<option value="29">29 - Ankebût العنكبوت</option>
+					<option value="46">046 - Ahkaf الأحقاف</option>
+					<option value="33">033 - Ahzâb الأحزاب</option>
+					<option value="3">003 - Âl-i İmrân آل عمران</option>
+					<option value="96">096 - Alak الـعلق</option>
+					<option value="29">029 - Ankebût العنكبوت</option>
 					<option value="103">103 - Asr الـعصر</option>
-					<option value="2">2 - Bakara البقرة</option>
-					<option value="90">90 - Beled الـبلد</option>
-					<option value="98">98 - Beyyine الـبينة</option>
-					<option value="85">85 - Bürûc البروج</option>
-					<option value="45">45 - Câsiye الجاثية</option>
-					<option value="72">72 - Cin الجن</option>
-					<option value="62">62 - Cum’a الـجـمـعـة</option>
-					<option value="93">93 - Duhâ الضـحى</option>
-					<option value="44">44 - Duhân الدخان</option>
-					<option value="6">6 - En’âm الأنعام</option>
-					<option value="21">21 - Enbiyâ الأنبياء</option>
-					<option value="8">8 - Enfâl الأنفال</option>
-					<option value="1">1 - Fâtiha الفاتحة</option>
-					<option value="35">35 - Fâtır فاطر</option>
-					<option value="89">89 - Fecr الفجر</option>
+					<option value="2">002 - Bakara البقرة</option>
+					<option value="90">090 - Beled الـبلد</option>
+					<option value="98">098 - Beyyine الـبينة</option>
+					<option value="85">085 - Bürûc البروج</option>
+					<option value="45">045 - Câsiye الجاثية</option>
+					<option value="72">072 - Cin الجن</option>
+					<option value="62">062 - Cum’a الـجـمـعـة</option>
+					<option value="93">093 - Duhâ الضـحى</option>
+					<option value="44">044 - Duhân الدخان</option>
+					<option value="6">006 - En’âm الأنعام</option>
+					<option value="21">021 - Enbiyâ الأنبياء</option>
+					<option value="8">008 - Enfâl الأنفال</option>
+					<option value="1">001 - Fâtiha الفاتحة</option>
+					<option value="35">035 - Fâtır فاطر</option>
+					<option value="89">089 - Fecr الفجر</option>
 					<option value="113">113 - Felâk الـفلق</option>
-					<option value="48">48 - Fetih الفتح</option>
+					<option value="48">048 - Fetih الفتح</option>
 					<option value="105">105 - Fil الـفيل</option>
-					<option value="25">25 - Furkan الفرقان</option>
-					<option value="41">41 - Fussilet فصلت</option>
-					<option value="88">88 - Gâşiye الغاشـيـة</option>
-					<option value="22">22 - Hac الحج</option>
-					<option value="57">57 - Hadid الحـديد</option>
-					<option value="69">69 - Hâkka الـحاقـة</option>
-					<option value="59">59 - Haşr الـحـشـر</option>
-					<option value="15">15 - Hicr الحجر</option>
-					<option value="49">49 - Hucurât الحـجـرات</option>
-					<option value="11">11 - Hûd هود</option>
+					<option value="25">025 - Furkan الفرقان</option>
+					<option value="41">041 - Fussilet فصلت</option>
+					<option value="88">088 - Gâşiye الغاشـيـة</option>
+					<option value="22">022 - Hac الحج</option>
+					<option value="57">057 - Hadid الحـديد</option>
+					<option value="69">069 - Hâkka الـحاقـة</option>
+					<option value="59">059 - Haşr الـحـشـر</option>
+					<option value="15">015 - Hicr الحجر</option>
+					<option value="49">049 - Hucurât الحـجـرات</option>
+					<option value="11">011 - Hûd هود</option>
 					<option value="104">104 - Hümeze الـهمزة</option>
-					<option value="14">14 - İbrahim إبراهيم</option>
+					<option value="14">014 - İbrahim إبراهيم</option>
 					<option value="112">112 - İhlâs الإخلاص</option>
-					<option value="82">82 - İnfitâr الانفطار</option>
-					<option value="76">76 - İnsan الإنسان</option>
-					<option value="84">84 - İnşikak الانشقاق</option>
-					<option value="94">94 - İnşirâh الـشرح</option>
-					<option value="17">17 - İsrâ بني إسرائيل</option>
-					<option value="97">97 - Kadir الـقدر</option>
-					<option value="50">50 - Kaf ق</option>
+					<option value="82">082 - İnfitâr الانفطار</option>
+					<option value="76">076 - İnsan الإنسان</option>
+					<option value="84">084 - İnşikak الانشقاق</option>
+					<option value="94">094 - İnşirâh الـشرح</option>
+					<option value="17">017 - İsrâ بني إسرائيل</option>
+					<option value="97">097 - Kadir الـقدر</option>
+					<option value="50">050 - Kaf ق</option>
 					<option value="109">109 - Kâfirûn الـكافرون</option>
-					<option value="68">68 - Kalem الـقـلـم</option>
-					<option value="54">54 - Kamer الـقمـر</option>
+					<option value="68">068 - Kalem الـقـلـم</option>
+					<option value="54">054 - Kamer الـقمـر</option>
 					<option value="101">101 - Kâria الـقارعـة</option>
-					<option value="28">28 - Kasas القصص</option>
-					<option value="18">18 - Kehf الكهف</option>
+					<option value="28">028 - Kasas القصص</option>
+					<option value="18">018 - Kehf الكهف</option>
 					<option value="108">108 - Kevser الـكوثر</option>
-					<option value="75">75 - Kıyamet الـقـيامـة</option>
+					<option value="75">075 - Kıyamet الـقـيامـة</option>
 					<option value="106">106 - Kureyş قريش</option>
-					<option value="92">92 - Leyl اللـيـل</option>
-					<option value="31">31 - Lokman لقمان</option>
-					<option value="5">5 - Mâide المائدة</option>
+					<option value="92">092 - Leyl اللـيـل</option>
+					<option value="31">031 - Lokman لقمان</option>
+					<option value="5">005 - Mâide المائدة</option>
 					<option value="107">107 - Mâûn المـاعون</option>
-					<option value="70">70 - Meâric الـمعارج</option>
-					<option value="19">19 - Meryem مريم</option>
-					<option value="40">40 - Mü’min غافر</option>
-					<option value="23">23 - Mü’minûn المؤمنون</option>
-					<option value="58">58 - Mücâdele الـمجادلـة</option>
-					<option value="74">74 - Müddessir الـمـدثـر</option>
-					<option value="47">47 - Muhammed محمـد</option>
-					<option value="67">67 - Mülk الـملك</option>
-					<option value="60">60 - Mümtehine الـمـمـتـحنة</option>
-					<option value="63">63 - Münâfikûn الـمنافقون</option>
-					<option value="77">77 - Mürselât الـمرسلات</option>
-					<option value="83">83 - Mutaffifin المطـفـفين</option>
-					<option value="73">73 - Müzzemmil الـمـزمـل</option>
-					<option value="16">16 - Nahl النحل</option>
+					<option value="70">070 - Meâric الـمعارج</option>
+					<option value="19">019 - Meryem مريم</option>
+					<option value="40">040 - Mü’min غافر</option>
+					<option value="23">023 - Mü’minûn المؤمنون</option>
+					<option value="58">058 - Mücâdele الـمجادلـة</option>
+					<option value="74">074 - Müddessir الـمـدثـر</option>
+					<option value="47">047 - Muhammed محمـد</option>
+					<option value="67">067 - Mülk الـملك</option>
+					<option value="60">060 - Mümtehine الـمـمـتـحنة</option>
+					<option value="63">063 - Münâfikûn الـمنافقون</option>
+					<option value="77">077 - Mürselât الـمرسلات</option>
+					<option value="83">083 - Mutaffifin المطـفـفين</option>
+					<option value="73">073 - Müzzemmil الـمـزمـل</option>
+					<option value="16">016 - Nahl النحل</option>
 					<option value="114">114 - Nâs الـناس</option>
 					<option value="110">110 - Nasr الـنصر</option>
-					<option value="79">79 - Nâziât الـنازعات</option>
-					<option value="78">78 - Nebe’ الـنبإ</option>
-					<option value="53">53 - Necm الـنجـم</option>
-					<option value="27">27 - Neml النمل</option>
-					<option value="4">4 - Nisâ النساء</option>
-					<option value="71">71 - Nuh نوح</option>
-					<option value="24">24 - Nûr النور</option>
-					<option value="13">13 - Ra’d الرعد</option>
-					<option value="55">55 - Rahmân الـرحـمـن</option>
-					<option value="30">30 - Rûm الروم</option>
-					<option value="38">38 - Sâd ص</option>
-					<option value="61">61 - Saf الـصـف</option>
-					<option value="37">37 - Sâffât الصافات</option>
-					<option value="34">34 - Sebe’ سبإ</option>
-					<option value="32">32 - Secde السجدة</option>
-					<option value="91">91 - Şems الـشـمـس</option>
-					<option value="26">26 - Şuarâ الشعراء</option>
-					<option value="42">42 - Şûrâ الشورى</option>
-					<option value="20">20 - Tâ-Hâ طه</option>
-					<option value="66">66 - Tahrim الـتحريم</option>
-					<option value="65">65 - Talâk الـطلاق</option>
-					<option value="86">86 - Târık الـطارق</option>
+					<option value="79">079 - Nâziât الـنازعات</option>
+					<option value="78">078 - Nebe’ الـنبإ</option>
+					<option value="53">053 - Necm الـنجـم</option>
+					<option value="27">027 - Neml النمل</option>
+					<option value="4">004 - Nisâ النساء</option>
+					<option value="71">071 - Nuh نوح</option>
+					<option value="24">024 - Nûr النور</option>
+					<option value="13">013 - Ra’d الرعد</option>
+					<option value="55">055 - Rahmân الـرحـمـن</option>
+					<option value="30">030 - Rûm الروم</option>
+					<option value="38">038 - Sâd ص</option>
+					<option value="61">061 - Saf الـصـف</option>
+					<option value="37">037 - Sâffât الصافات</option>
+					<option value="34">034 - Sebe’ سبإ</option>
+					<option value="32">032 - Secde السجدة</option>
+					<option value="91">091 - Şems الـشـمـس</option>
+					<option value="26">026 - Şuarâ الشعراء</option>
+					<option value="42">042 - Şûrâ الشورى</option>
+					<option value="20">020 - Tâ-Hâ طه</option>
+					<option value="66">066 - Tahrim الـتحريم</option>
+					<option value="65">065 - Talâk الـطلاق</option>
+					<option value="86">086 - Târık الـطارق</option>
 					<option value="111">111 - Tebbet الـمسد</option>
-					<option value="64">64 - Teğabün الـتغابن</option>
+					<option value="64">064 - Teğabün الـتغابن</option>
 					<option value="102">102 - Tekâsür الـتكاثر</option>
-					<option value="81">81 - Tekvir التكوير</option>
-					<option value="9">9 - Tevbe التوبة</option>
-					<option value="95">95 - Tin الـتين</option>
-					<option value="52">52 - Tûr الـطور</option>
-					<option value="56">56 - Vâkıa الواقعـة</option>
-					<option value="36">36 - Yâsin يس</option>
-					<option value="10">10 - Yunus يونس</option>
-					<option value="12">12 - Yusuf يوسف</option>
-					<option value="51">51 - Zâriyât الذاريات</option>
-					<option value="99">99 - Zilzâl الـزلزلة</option>
-					<option value="43">43 - Zuhruf الزخرف</option>
-					<option value="39">39 - Zümer الزمر</option>
+					<option value="81">081 - Tekvir التكوير</option>
+					<option value="9">009 - Tevbe التوبة</option>
+					<option value="95">095 - Tin الـتين</option>
+					<option value="52">052 - Tûr الـطور</option>
+					<option value="56">056 - Vâkıa الواقعـة</option>
+					<option value="36">036 - Yâsin يس</option>
+					<option value="10">010 - Yunus يونس</option>
+					<option value="12">012 - Yusuf يوسف</option>
+					<option value="51">051 - Zâriyât الذاريات</option>
+					<option value="99">099 - Zilzâl الـزلزلة</option>
+					<option value="43">043 - Zuhruf الزخرف</option>
+					<option value="39">039 - Zümer الزمر</option>
 				</select>
 			</dd>
 			<dt id="juz_list_label"></dt>
@@ -166,6 +172,7 @@
 					<li class="sura-shortcut" data-sura-id="55"><span>55-Rahmân</span> <span class="text-right"> الـرحـمـن</span></li>
 					<li class="sura-shortcut" data-sura-id="56"><span>56-Vâkıa</span> <span class="text-right"> الواقعـة</span></li>
 					<li class="sura-shortcut" data-sura-id="67"><span>67-Mülk</span> <span class="text-right"> الـملك</span></li>
+					<li class="sura-shortcut" data-sura-id="78"><span>78-Nebe’</span> <span class="text-right"> الـنبإ</span></li>
 				</ol>
 			</dd>
 		</dl>
