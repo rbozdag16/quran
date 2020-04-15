@@ -4,16 +4,21 @@ function loading(load = true)
 
 	if(load)
 	{
-		loadingOverlay.style.display = 'block';
+		loadingOverlay.style.opacity = '1';
+		loadingOverlay.style.visibility = 'visible';
 	}
 	else
 	{
-		loadingOverlay.style.display = 'none';
+		loadingOverlay.style.opacity = '0';
+		loadingOverlay.style.visibility = 'hidden';
 	}
+
 }
 
 window.onload = ()=>{
+
 	loading(false);
+
 	// Define elements
 	let bgColorList         = document.getElementById('bg_color_list');
 	let bookmarkContainer   = document.getElementById('bookmark-container');
@@ -352,20 +357,16 @@ window.onload = ()=>{
 
 	function setColor(color)
 	{
-		loading(true);
 		document.documentElement.style.setProperty('--set-color', color);
 		localStorage.setItem('color', color);
 		closeNavs();
-		loading(false);
 	}
 
 	function setBgColor(bgColor)
 	{
-		loading(true);
 		document.documentElement.style.setProperty('--set-bg-color', bgColor);
 		localStorage.setItem('bgColor', bgColor);
 		closeNavs();
-		loading(false);
 	}
 
 	function setFontSize(fontSize)
