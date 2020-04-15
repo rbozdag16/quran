@@ -13,6 +13,12 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.rb-quran-kaaba-line:before {
+  content: "\6a";
+}
+.rb-quran-kaaba:before {
+  content: "\6b";
+}
 .rb-info:before {
 	content: "\69";
 }
