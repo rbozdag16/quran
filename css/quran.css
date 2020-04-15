@@ -166,7 +166,7 @@ i {
 .settings {
 	display: grid;
 	grid-template-columns: 30% 60%;
-	grid-gap: 20px 5px;
+	grid-gap: 2rem 5px;
 	align-items: center;
 }
 .settings dt {
@@ -342,8 +342,9 @@ i {
 .ul.icons li {
 	margin-bottom: .8rem;
 }
+#sura-list {
+}
 #sura-shortcuts {
-	list-style-position: inside;
 }
 #sura_shortcuts_label {
 	margin-bottom: 1rem;
@@ -353,7 +354,7 @@ i {
 	grid-template-columns: 3fr 2fr;
 	grid-gap: 5px;
 	align-items: center;
-	margin-bottom: 1rem;
+	margin-bottom: 1.5rem;
 	cursor: pointer;
 }
 footer {
@@ -392,14 +393,25 @@ footer a {
 	height: 100vh;
 	background-color: teal;
 	z-index: 200;
+	opacity: 1;
+	visibility: visible;
+	transition: 2s;
 }
-#quran-heart {
-	display: block;
-	position: absolute;
-	width: 48px;
-	height: 48px;
-	top: 50%;
-	left: 50%;
+#loading-content {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+	color: white;
+	text-align: center;
+}
+#loading-content h3,
+#loading-content p
+ {
+	margin-bottom: 1rem;
+}
+#loading-image {
 }
 @media print {
 	.container {
